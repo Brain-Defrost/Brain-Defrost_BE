@@ -8,5 +8,13 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  # root "posts#index" 
+  namespace :api do
+    namespace :v1 do
+      resources :games, except: [:index, :destroy] do
+        resources :players, except: [:index]
+        get "/stats", to: "stats#show"
+      end
+    end
+  end
 end
