@@ -1,6 +1,5 @@
 class Game < ApplicationRecord
   has_many :players, dependent: :destroy
-  has_one :stats
 
   validates :topic, presence: true
   validates :number_of_questions, presence: true, numericality: { greater_than: 0, less_than_or_equal_to: 10 }
