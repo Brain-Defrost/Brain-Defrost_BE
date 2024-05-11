@@ -2,7 +2,7 @@ class QuestionService
   attr_reader :api_url, :options, :query
 
   def initialize(number, topic)
-    @query = "Write #{number} trivia questions and write the answer below each question. Make the questions about #{topic}, and phrase the answers in two words or less"
+    @query = "Write #{number} trivia questions about #{topic}, and phrase the answers in two words or less. Return 1 correct answer and 3 incorrect answers. Format message['content'] as JSON with id and a key named correct_answer associated with the string of the correct answer and another key named options associated to an array of the 4 strings of the generated options"
 
     @api_url = 'https://api.openai.com/v1/chat/completions'
 
@@ -14,25 +14,20 @@ class QuestionService
 
   def call
     body = {
-      model: 'gpt-3.5-turbo', #Model can be change
-      messages: [
-        { 
-          role: 'user', 
-          content: @query 
-        }
-      ]
+      model: 'gpt-3.5-turbo',
+      messages: [ { role: 'user', content: @query }]
     }
 
     response = connection.post(@api_url, body.to_json, @options)
 
     unless response.success?
-      raise "Error: #{response.body['error']['message']}"
+      raise "Error: #{JSON.parse(response.body)['error']['message']}"
     end
 
     response.body['choices'][0]['message']['content']
 
     rescue StandardError => e
-      puts "Error calling OpenAI API: #{e.message}"
+      raise "Error calling OpenAI API: #{e.message}"
     nil
   end
 
