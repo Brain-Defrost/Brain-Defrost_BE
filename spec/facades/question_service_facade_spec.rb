@@ -27,7 +27,7 @@ RSpec.describe QuestionServiceFacade do
   end   
 
   describe '#get_questions' do
-    xit 'returns question objects in an array' do
+    it 'returns question objects in an array' do
       questions = QuestionServiceFacade.get_questions(@number, @topic)
 
       expect(questions).to be_an(Array)
