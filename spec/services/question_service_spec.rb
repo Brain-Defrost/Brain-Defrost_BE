@@ -1,15 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe QuestionService do
-  before(:each) do
+  before do
     number = 8
     topic = "music"
 
     @question_service = QuestionService.new(number, topic)
-
-    json_music_questions = File.read("spec/fixtures/question_service_1.json")
-
-    allow_any_instance_of(QuestionService).to receive(:call).and_return(json_music_questions)
   end
   describe '#initialize' do
     it 'exists and populates attributes correctly' do
@@ -19,19 +15,45 @@ RSpec.describe QuestionService do
   end
 
   describe '#call' do
-    it 'returns generated trivia questions' do
-      service_response = @question_service.call
-      json_response = JSON.parse(service_response)
+    context 'happy path' do
+      it 'returns generated trivia questions' do
+        json_music_questions = File.read("spec/fixtures/question_service_1.json")
 
-      expect{ service_response }.not_to raise_error
-      check_hash_structure(json_response, 'id', String)
-      check_hash_structure(json_response, 'object', String)
-      check_hash_structure(json_response, 'created', Integer)
-      check_hash_structure(json_response, 'model', String)
-      check_hash_structure(json_response, 'usage', Hash)
-      check_hash_structure(json_response, 'choices', Array)
-      check_hash_structure(json_response['choices'].first, 'message', Hash)
-      check_hash_structure(json_response['choices'].first['message'], 'content', String)
+        allow_any_instance_of(QuestionService).to receive(:call).and_return(json_music_questions)
+
+        service_response = @question_service.call
+        json_response = JSON.parse(service_response)
+
+        expect{ service_response }.not_to raise_error
+        check_hash_structure(json_response, 'id', String)
+        check_hash_structure(json_response, 'object', String)
+        check_hash_structure(json_response, 'created', Integer)
+        check_hash_structure(json_response, 'model', String)
+        check_hash_structure(json_response, 'usage', Hash)
+        check_hash_structure(json_response, 'choices', Array)
+        check_hash_structure(json_response['choices'].first, 'message', Hash)
+        check_hash_structure(json_response['choices'].first['message'], 'content', String)
+      end
+    end
+
+    context 'when the API request fails' do
+      it 'raises an error' do
+        stub_request(:post, 'https://api.openai.com/v1/chat/completions')
+          .to_return(status: 500)
+        
+        expect { @question_service.call }.to raise_error(StandardError, /Error calling OpenAI API/)
+      end
+    end
+
+    context 'when the API returns an error response' do
+      it 'raises an error with the message from the API' do
+        error_message = 'API error message here'
+
+        stub_request(:post, 'https://api.openai.com/v1/chat/completions')
+          .to_return(status: 400, body: { error: { message: error_message } }.to_json)
+        
+        expect { @question_service.call }.to raise_error(RuntimeError, /Error: #{error_message}/)
+      end
     end
   end
 end
