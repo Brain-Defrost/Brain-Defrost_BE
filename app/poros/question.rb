@@ -1,10 +1,15 @@
 class Question
-  attr_reader :id, :question, :correct_answer, :options
+  attr_reader :topic,
+              :question_number, 
+              :question_text, 
+              :answer, 
+              :options
 
   def initialize(data)
-    @id = data[:id]
-    @question = data[:question]
-    @correct_answer = data[:correct_answer] 
-    @options = data[:options]
+    @topic = data["topic"]
+    @question_number = data["id"]
+    @question_text = data["question_text"]
+    @answer = data["correct_answer"] 
+    @options = data["options"]
   end
 end
