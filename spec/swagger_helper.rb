@@ -18,7 +18,7 @@ RSpec.configure do |config|
     'v1/swagger.yaml' => {
       openapi: '3.0.1',
       info: {
-        title: 'API V1',
+        title: 'Brain Defrost API',
         version: 'v1'
       },
       paths: {},
@@ -31,7 +31,39 @@ RSpec.configure do |config|
             }
           }
         }
-      ]
+      ],
+      components: {
+        schemas: {
+          game: {
+            type: 'object',
+            properties: {
+              id: { type: 'string' },
+              link: { type: 'string' },
+              started: { type: 'boolean'}, # check this data type
+              number_of_questions: { type: 'integer' },
+              number_of_players: { type: 'integer' },
+              topic: { type: 'string' },
+              time_limit: { type: 'integer' }
+            }
+          },
+          player: {
+            type: 'object',
+            properties: {
+              id: { type: 'string' },
+              display_name: { type: 'string' },
+              answers_correct: { type: 'integer' },
+              answers_incorrect: { type: 'integer' }
+            }
+          },
+          stat: {
+            type: 'object',
+            properties: {
+              id: { type: 'string' },
+              avg_correct_answers: { type: 'number', format: 'float' }
+            }
+          }
+        }
+      }
     }
   }
 

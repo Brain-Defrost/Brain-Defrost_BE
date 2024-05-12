@@ -1,0 +1,138 @@
+---
+openapi: 3.0.1
+info:
+  title: Brain Defrost API
+  version: v1
+paths:
+  "/api/v1/games":
+    post:
+      summary: create game
+      responses:
+        '200':
+          description: successful
+  "/api/v1/games/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show game
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update game
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update game
+      responses:
+        '200':
+          description: successful
+  "/api/v1/games/{game_id}/players":
+    parameters:
+    - name: game_id
+      in: path
+      description: game_id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: create player
+      responses:
+        '200':
+          description: successful
+  "/api/v1/games/{game_id}/players/{id}":
+    parameters:
+    - name: game_id
+      in: path
+      description: game_id
+      required: true
+      schema:
+        type: string
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show player
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update player
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update player
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete player
+      responses:
+        '200':
+          description: successful
+  "/api/v1/games/{game_id}/stats":
+    parameters:
+    - name: game_id
+      in: path
+      description: game_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show stat
+      responses:
+        '200':
+          description: successful
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
+components:
+  schemas:
+    game:
+      type: object
+      properties:
+        id:
+          type: string
+        link:
+          type: string
+        started:
+          type: boolean
+        number_of_questions:
+          type: integer
+        number_of_players:
+          type: integer
+        topic:
+          type: string
+        time_limit:
+          type: integer
+    player:
+      type: object
+      properties:
+        id:
+          type: string
+        display_name:
+          type: string
+        answers_correct:
+          type: integer
+        answers_incorrect:
+          type: integer
+    stat:
+      type: object
+      properties:
+        id:
+          type: string
+        avg_correct_answers:
+          type: number
+          format: float
