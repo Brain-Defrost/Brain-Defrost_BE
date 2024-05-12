@@ -2,7 +2,7 @@ class QuestionService
   attr_reader :api_url, :options, :query
 
   def initialize(number, topic)
-    @query = "Write #{number} trivia questions about #{topic}, and phrase the answers in two words or less. Return 1 correct answer and 3 incorrect answers. Format message['content'] as JSON with id and a key named correct_answer associated with the string of the correct answer and another key named options associated to an array of the 4 strings of the generated options"
+    @query = "Write #{number} trivia questions about #{topic}, and phrase the answers in two words or less. Return 1 correct answer and 3 incorrect answers. Format message['content'] as JSON with id and: a key named topic associated to the topic, a key named correct_answer associated with the string of the correct answer and another key named options associated to an array of the 4 strings of the generated options"
 
     @api_url = 'https://api.openai.com/v1/chat/completions'
 
