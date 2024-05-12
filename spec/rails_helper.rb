@@ -81,3 +81,17 @@ def check_hash_structure(object, key, data_type)
   expect(object).to have_key(key)
   expect(object[key]).to be_a(data_type)
 end
+
+
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+  # Webmock will block requests to the API
+  config.hook_into :webmock
+  # Will protect API key
+  config.filter_sensitive_data('<API_KEY>') { Rails.application.credentials.chatgpt_api_key }
+  # Will create fixture files for us
+  config.configure_rspec_metadata!
+  # Will delete cassettes and rerun when the interval is met
+  config.default_cassette_options = { re_record_interval: 30.days }
+  config.ignore_localhost = true
+end
