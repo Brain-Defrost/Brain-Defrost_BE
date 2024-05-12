@@ -5,7 +5,7 @@ RSpec.describe QuestionServiceFacade do
     @number = 8
     @topic = "music"
 
-    json_music_questions = File.read("spec/fixtures/question_service_1.json")
+    json_music_questions = File.read("spec/fixtures/question_service_2.json")
 
     allow_any_instance_of(QuestionService).to receive(:call).and_return(json_music_questions)
 
@@ -18,10 +18,11 @@ RSpec.describe QuestionServiceFacade do
 
       expect(parsed_data).to be_an(Array)
       parsed_data.each do |data|
-        check_hash_structure(data, :id, Integer)
-        check_hash_structure(data, :question, String)
-        check_hash_structure(data, :correct_answer, String)
-        check_hash_structure(data, :options, Array)
+        check_hash_structure(data, 'id', Integer)
+        check_hash_structure(data, 'topic', String)
+        check_hash_structure(data, 'question_text', String)
+        check_hash_structure(data, 'correct_answer', String)
+        check_hash_structure(data, 'options', Array)
       end
     end
   end   
