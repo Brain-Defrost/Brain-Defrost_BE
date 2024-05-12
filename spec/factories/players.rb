@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :player do
-    display_name { "MyString" }
-    answers_correct { 1 }
-    answers_incorrect { 1 }
-    game { nil }
+    display_name { Faker::Internet.unique.username }
+    answers_correct { Faker::Number.within(range: 1..5) }
+    answers_incorrect { Faker::Number.within(range: 1..5) }
+    game { create(:game) }
   end
 end
