@@ -10,7 +10,7 @@ RSpec.describe QuestionService do
   describe '#initialize' do
     it 'exists and populates attributes correctly' do
       expect(@question_service).to be_a(QuestionService)
-      expect(@question_service.query).to eq("Write 8 trivia questions about music, and phrase the answers in two words or less. Return 1 correct answer and 3 incorrect answers. Format message['content'] as JSON with id and a key named correct_answer associated with the string of the correct answer and another key named options associated to an array of the 4 strings of the generated options")
+      expect(@question_service.query).to eq("Write 8 trivia questions about music, and phrase the answers in two words or less. Return 1 correct answer and 3 incorrect answers. Format message['content'] as JSON with id and: a key named topic associated to the topic, a key named correct_answer associated with the string of the correct answer and another key named options associated to an array of the 4 strings of the generated options")
     end
   end
 
