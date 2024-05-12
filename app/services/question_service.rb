@@ -8,14 +8,15 @@ class QuestionService
 
     @options = {
       'Content-Type' => 'application/json',
-      'Authorization' => Rails.application.credentials.chatgpt_api_key
+      'Authorization' => Rails.application.credentials.open_ai_key
     }
   end
 
   def call
     body = {
       model: 'gpt-3.5-turbo',
-      messages: [ { role: 'user', content: @query }]
+      messages: [ { role: 'user', content: @query,
+      format: "json" }]
     }
 
     response = connection.post(@api_url, body.to_json, @options)
@@ -24,7 +25,7 @@ class QuestionService
       raise "Error: #{JSON.parse(response.body)['error']['message']}"
     end
 
-    response.body['choices'][0]['message']['content']
+    response.body
 
     rescue StandardError => e
       raise "Error calling OpenAI API: #{e.message}"
