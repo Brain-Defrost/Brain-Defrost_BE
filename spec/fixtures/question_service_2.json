@@ -1,0 +1,23 @@
+{
+  "id": "chatcmpl-9O9gwopflD6NTwwbPyz8ceeyOrFN5",
+  "object": "chat.completion",
+  "created": 1715544154,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+      {
+          "index": 0,
+          "message": {
+              "role": "assistant",
+              "content": "```json\n{\n  \"id\": 1,\n  \"topic\": \"Music Trivia\",\n  \"question_text\": \"Who is the lead vocalist of The Beatles?\",\n  \"correct_answer\": \"John Lennon\",\n  \"options\": [\"Paul McCartney\", \"George Harrison\", \"Ringo Starr\", \"John Lennon\"]\n}\n```\n\n```json\n{\n  \"id\": 2,\n  \"topic\": \"Music Trivia\",\n  \"question_text\": \"Which artist is known as the 'Queen of Pop'?\",\n  \"correct_answer\": \"Madonna\",\n  \"options\": [\"Beyonce\", \"Taylor Swift\", \"Adele\", \"Madonna\"]\n}\n```\n\n```json\n{\n  \"id\": 3,\n  \"topic\": \"Music Trivia\",\n  \"question_text\": \"What instrument does Elton John famously play?\",\n  \"correct_answer\": \"Piano\",\n  \"options\": [\"Guitar\", \"Drums\", \"Violin\", \"Piano\"]\n}\n```\n\n```json\n{\n  \"id\": 4,\n  \"topic\": \"Music Trivia\",\n  \"question_text\": \"Which song by Michael Jackson features a famous zombie dance?\",\n  \"correct_answer\": \"Thriller\",\n  \"options\": [\"Beat It\", \"Billie Jean\", \"Smooth Criminal\", \"Thriller\"]\n}\n```\n\n```json\n{\n  \"id\": 5,\n  \"topic\": \"Music Trivia\",\n  \"question_text\": \"What genre of music did Elvis Presley become famous for?\",\n  \"correct_answer\": \"Rock n' Roll\",\n  \"options\": [\"Jazz\", \"Blues\", \"Country\", \"Rock n' Roll\"]\n}\n```\n\n```json\n{\n  \"id\": 6,\n  \"topic\": \"Music Trivia\",\n  \"question_text\": \"Which band released the album 'Dark Side of the Moon'?\",\n  \"correct_answer\": \"Pink Floyd\",\n  \"options\": [\"Led Zeppelin\", \"The Rolling Stones\", \"The Beatles\", \"Pink Floyd\"]\n}\n```\n\n```json\n{\n  \"id\": 7,\n  \"topic\": \"Music Trivia\",\n  \"question_text\": \"Who is the best-selling female artist of all time?\",\n  \"correct_answer\": \"Madonna\",\n  \"options\": [\"Celine Dion\", \"Whitney Houston\", \"Mariah Carey\", \"Madonna\"]\n}\n```\n\n```json\n{\n  \"id\": 8,\n  \"topic\": \"Music Trivia\",\n  \"question_text\": \"What is the name of Rihanna's debut single?\",\n  \"correct_answer\": \"Pon de Replay\",\n  \"options\": [\"Umbrella\", \"Diamonds\", \"Love on the Brain\", \"Pon de Replay\"]\n}\n```"
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+      }
+  ],
+  "usage": {
+      "prompt_tokens": 97,
+      "completion_tokens": 570,
+      "total_tokens": 667
+  },
+  "system_fingerprint": null
+}
