@@ -9,18 +9,13 @@ class QuestionServiceFacade
 
   def self.parse_questions(service_response)
     response = JSON.parse(service_response)
-    questions = response["choices"].first["message"]["content"].split("\n\n")
+    questions = response["choices"].first["message"]["content"]
     
     parsed_data = []
-    
-    questions.each do |question|
-      id, body, correct_answer, options = question.scan(/(\d+)\. Question: (.+)\n\s+Correct Answer: (.+)\n\s+Options: \[(.+)\]/).flatten
 
-      options = options.split(", ").map { |option| option.gsub(/["\[\]]/, '') }
-      
-      parsed_data << { id: id.to_i, question: body, correct_answer: correct_answer, options: options }
+    questions.split("```json\n").reject(&:empty?).map do |json_string|
+      parsed_data << JSON.parse(json_string.gsub("```", ""))
     end
-
     parsed_data
   end
 end
