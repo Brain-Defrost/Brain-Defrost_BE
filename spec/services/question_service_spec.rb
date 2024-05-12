@@ -16,23 +16,18 @@ RSpec.describe QuestionService do
 
   describe '#call' do
     context 'happy path' do
-      it 'returns generated trivia questions' do
-        json_music_questions = File.read("spec/fixtures/question_service_1.json")
-
-        allow_any_instance_of(QuestionService).to receive(:call).and_return(json_music_questions)
-
+      it 'returns generated trivia questions', :vcr do
         service_response = @question_service.call
-        json_response = JSON.parse(service_response)
 
         expect{ service_response }.not_to raise_error
-        check_hash_structure(json_response, 'id', String)
-        check_hash_structure(json_response, 'object', String)
-        check_hash_structure(json_response, 'created', Integer)
-        check_hash_structure(json_response, 'model', String)
-        check_hash_structure(json_response, 'usage', Hash)
-        check_hash_structure(json_response, 'choices', Array)
-        check_hash_structure(json_response['choices'].first, 'message', Hash)
-        check_hash_structure(json_response['choices'].first['message'], 'content', String)
+        check_hash_structure(service_response, 'id', String)
+        check_hash_structure(service_response, 'object', String)
+        check_hash_structure(service_response, 'created', Integer)
+        check_hash_structure(service_response, 'model', String)
+        check_hash_structure(service_response, 'usage', Hash)
+        check_hash_structure(service_response, 'choices', Array)
+        check_hash_structure(service_response['choices'].first, 'message', Hash)
+        check_hash_structure(service_response['choices'].first['message'], 'content', String)
       end
     end
 
