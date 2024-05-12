@@ -88,7 +88,7 @@ VCR.configure do |config|
   # Webmock will block requests to the API
   config.hook_into :webmock
   # Will protect API key
-  config.filter_sensitive_data('<API_KEY>') { Rails.application.credentials.chatgpt_api_key }
+  config.filter_sensitive_data('<API_KEY>') { Rails.application.credentials.open_ai_key }
   # Will create fixture files for us
   config.configure_rspec_metadata!
   # Will delete cassettes and rerun when the interval is met
