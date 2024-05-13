@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :game do
-    topic { "MyString" }
-    number_of_questions { 1 }
-    time_limit { 1 }
-    number_of_players { 1 }
-    started { false }
-    link { "MyString" }
+    topic { Faker::Educator.subject }
+    number_of_questions { Faker::Number.within(range: 1..10) }
+    time_limit { Faker::Number.within(range: 5..120) }
+    number_of_players { Faker::Number.within(range: 1..35) }
+    started { Faker::Boolean.boolean }
+    link { Faker::Internet.url }
   end
 end
