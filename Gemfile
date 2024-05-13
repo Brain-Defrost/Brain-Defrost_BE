@@ -38,6 +38,7 @@ gem "faraday"
 gem "jsonapi-serializer"
 gem 'rswag-api'
 gem 'rswag-ui'
+gem 'openai'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -58,4 +59,5 @@ group :test do
   gem "shoulda-matchers"
   gem "faker"
   gem "webmock"
+  gem "vcr"
 end
