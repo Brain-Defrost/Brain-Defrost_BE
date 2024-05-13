@@ -1,11 +1,11 @@
 services:
- - type: redis
-   name: cache
-   ipAllowList: [] # only allow internal connections
-   plan: free # optional (defaults to starter)
-   maxmemoryPolicy: allkeys-lfu # optional (defaults to allkeys-lru). Rails recommends allkeys-lfu as a default.
- - type: web # this example Rails service comes from https://render.com/docs/deploy-rails
-   name: mysite
+  - type: redis
+    name: cache
+    # ipAllowList: [] # only allow internal connections
+    plan: free
+    maxmemoryPolicy: allkeys-lfu # optional (defaults to allkeys-lru). Rails recommends allkeys-lfu as a default.
+  - type: web 
+    name: Brain-Defrost_BE
     runtime: ruby
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
@@ -16,7 +16,7 @@ services:
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
-      - key: redis://red-cp16bfgl6cac73eot1u0:6379
+      - key: REDIS_URL 
         fromService:
           type: redis
           name: cache
