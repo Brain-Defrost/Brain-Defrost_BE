@@ -61,7 +61,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
   config.action_controller.perform_caching = true
   config.cache_store = :redis_cache_store, {
-    url: ENV['REDIS_URL']
+    url: ENV['redis://red-cp16bfgl6cac73eot1u0:6379']
   }
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
