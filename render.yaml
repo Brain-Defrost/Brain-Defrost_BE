@@ -10,9 +10,9 @@ services:
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
-      - key: DATABASE_URL
+      - key: "postgres://rails:password@localhost:5432/rails_test"
         fromDatabase:
-          name: Brain-Defrost_BE
+          name: "Ruby on Rails CI"
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
