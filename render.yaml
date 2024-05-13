@@ -15,7 +15,7 @@ services:
           name: mysite
           property: connectionString
       - key: RAILS_MASTER_KEY
-        sync: false
+          sync: false
       - key: REDIS_URL 
         fromService:
           type: redis
