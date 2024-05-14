@@ -1,5 +1,8 @@
 class QuestionServiceFacade
-  def self.get_questions(number, topic)
+  def self.get_questions(game)
+    number = game.number_of_questions
+    topic = game.topic
+
     service_response = QuestionService.new(number, topic).call
 
     parse_questions(service_response).map do |question_data|
