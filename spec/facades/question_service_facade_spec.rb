@@ -2,14 +2,13 @@ require 'rails_helper'
 
 RSpec.describe QuestionServiceFacade do
   before do
-    @number = 8
-    @topic = "music"
+    @game = Game.create!({link: "www.example.com/#{SecureRandom.hex(5)}", number_of_questions: 8, number_of_players: 7, topic: "music", time_limit: 30})
 
     json_music_questions = File.read("spec/fixtures/question_service_2.json")
 
     allow_any_instance_of(QuestionService).to receive(:call).and_return(json_music_questions)
 
-    @service_response = QuestionService.new(@number, @topic).call
+    @service_response = QuestionService.new(8, "music").call
   end
 
   describe '#parse_questions' do
@@ -29,7 +28,7 @@ RSpec.describe QuestionServiceFacade do
 
   describe '#get_questions' do
     it 'returns question objects in an array' do
-      questions = QuestionServiceFacade.get_questions(@number, @topic)
+      questions = QuestionServiceFacade.get_questions(@game)
 
       expect(questions).to be_an(Array)
       questions.each { |question| expect(question).to be_a(Question) }
