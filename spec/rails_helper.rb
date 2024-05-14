@@ -1,3 +1,4 @@
+require "securerandom"
 require "simplecov"
 SimpleCov.start
 
