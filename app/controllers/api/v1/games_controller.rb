@@ -1,7 +1,7 @@
 class Api::V1::GamesController < ApplicationController
   def create
     game = Game.new(new_game_params)
-    if game.save!
+    if game.save
       game.players.create!(display_name: params[:display_name])
       questions = QuestionServiceFacade.get_questions(game)
       render json: GameSerializer.new(game, questions), status: :created
@@ -21,7 +21,7 @@ class Api::V1::GamesController < ApplicationController
 
   private
   def new_game_params
-    params.permit(:topic, :number_of_questions, :number_of_players, :time_limit, :link) # remove link later
+    params.permit(:topic, :number_of_questions, :number_of_players, :time_limit)
   end
 
   def game_params

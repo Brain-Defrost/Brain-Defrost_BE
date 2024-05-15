@@ -2,11 +2,10 @@ class GameSerializer
   # include JSONAPI::Serializer
   # attributes :link, :started, :number_of_questions, :number_of_players, :topic, :time_limit
 
-  # has_many :players do
-  #   attribute :display_name, :answers_correct, :answers_incorrect
-  # end
+  # has_many :players
+  # has_many :questions
 
-  def initialize(game, questions = nil)
+  def initialize(game, questions = [])
     {
       data: {
         id: game.id,
