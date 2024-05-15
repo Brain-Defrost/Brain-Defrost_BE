@@ -113,6 +113,7 @@ RSpec.describe 'Game API', type: :request do
 
           run_test! vcr: true do |example|
             expect(response.status).to eq 201
+            require 'pry'; binding.pry
 
             parsed_data = JSON.parse(response.body, symbolize_names: true)[:data]
             expect(parsed_data[:id].to_i).to eq Game.last.id

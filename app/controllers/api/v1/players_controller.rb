@@ -6,16 +6,19 @@ class Api::V1::PlayersController < ApplicationController
   end
 
   def show
-    player = Player.find(params[:id])
+    player = Player.find_by!(game_id: params[:game_id], id: params[:id])
     render json: PlayerSerializer.new(player)
   end
 
   def update
-    #code
+    player = Player.find_by!(game_id: params[:game_id])
+    player.update!(player_params)
+    render json: PlayerSerializer.new(player)
   end
 
   def destroy
-    #code
+    player = Player.find(params[:id])
+    player.destroy
   end
 
   private

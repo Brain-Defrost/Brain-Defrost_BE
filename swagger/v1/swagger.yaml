@@ -375,8 +375,9 @@ paths:
             schema:
               type: object
               properties:
-                type: string
-                required: true
+                display_name:
+                  type: string
+                  required: true
   "/api/v1/games/{game_id}/players/{id}":
     parameters:
     - name: game_id
@@ -430,15 +431,60 @@ paths:
       summary: update player
       tags:
       - Player
+      parameters:
+      - name: game_id
+        in: path
+        description: Game ID
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        required: true
+                      type:
+                        type: string
+                        required: true
+                      attributes:
+                        type: object
+                        properties:
+                          display_name:
+                            type: string
+                            required: true
+                          answers_correct:
+                            type: integer
+                            required: true
+                          answers_incorrect:
+                            type: integer
+                            required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                display_name:
+                  type: string
+                answers_correct:
+                  type: integer
+                answers_incorrect:
+                  type: integer
     delete:
-      summary: delete player
+      summary: Delete a player
       tags:
       - Player
       responses:
-        '200':
+        '204':
           description: successful
 servers:
 - url: https://brain-defrost-f8afea5ead0a.herokuapp.com
