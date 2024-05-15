@@ -1,24 +1,30 @@
 class Api::V1::GamesController < ApplicationController
   def create
-    game = Game.create!(game_params)
-
-    if game.save
+    game = Game.new(new_game_params)
+    if game.save!
       game.players.create!(display_name: params[:display_name])
-      QuestionServiceFacade.get_questions(game)
-    
-      render json: GameSerializer.new(game)
+      questions = QuestionServiceFacade.get_questions(game)
+      render json: GameSerializer.format(game, questions), status: :created
     end
   end
 
   def show
+    game = Game.find(params[:id])
+    render json: GameSerializer.format(game)
   end
 
   def update
-    #code
+    game = Game.find(params[:id])
+    game.update!(game_params)
+    render json: GameSerializer.format(game)
   end
 
   private
+  def new_game_params
+    params.permit(:topic, :number_of_questions, :number_of_players, :time_limit, :link)
+  end
+
   def game_params
-    params.require(:topic, :number_of_questions, :time_limit,:number_of_players, :display_name).permit(:id)
+    params.permit(:started)
   end
 end

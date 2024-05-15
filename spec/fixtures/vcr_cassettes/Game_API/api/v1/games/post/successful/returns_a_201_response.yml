@@ -1,0 +1,102 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.openai.com/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"gpt-3.5-turbo","messages":[{"role":"user","content":"Write
+        8 trivia questions about music, and phrase the answers in two words or less.
+        Return 1 correct answer and 3 incorrect answers. Format message[''content'']
+        as JSON with id and: a key named topic associated to the topic, a key named
+        correct_answer associated with the string of the correct answer and another
+        key named options associated to an array of the 4 strings of the generated
+        options","format":"json"}]}'
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - "<API_KEY>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 15 May 2024 03:32:54 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Openai-Organization:
+      - user-cqno5n9tuxhuwnsfmv53dlcm
+      Openai-Processing-Ms:
+      - '4196'
+      Openai-Version:
+      - '2020-10-01'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      X-Ratelimit-Limit-Requests:
+      - '10000'
+      X-Ratelimit-Limit-Tokens:
+      - '60000'
+      X-Ratelimit-Remaining-Requests:
+      - '9999'
+      X-Ratelimit-Remaining-Tokens:
+      - '59885'
+      X-Ratelimit-Reset-Requests:
+      - 8.64s
+      X-Ratelimit-Reset-Tokens:
+      - 115ms
+      X-Request-Id:
+      - req_4f06c41a6ab5c54f6cab32a18644bc43
+      Cf-Cache-Status:
+      - DYNAMIC
+      Set-Cookie:
+      - __cf_bm=wuSCZT1iwglYqkO5vEBUSPtd5jft7.KkycJzNGC5CAo-1715743974-1.0.1.1-GKjPm6gN0ufySQ9cgYL1Bhnp6aZaWBQD4NLYhtyV9mvyFyol0RKaqaH2ylK6ry59EbhVvh6OGOdUKjVLQ._Tsg;
+        path=/; expires=Wed, 15-May-24 04:02:54 GMT; domain=.api.openai.com; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=cm4RickqbRL7gHeWvuQeZcjPvRXQj7Pu_33tIH7tFd4-1715743974001-0.0.1.1-604800000;
+        path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 884010225d294644-DFW
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+          "id": "chatcmpl-9OzflIbyZBbd38jqk5549XpSA3E5D",
+          "object": "chat.completion",
+          "created": 1715743969,
+          "model": "gpt-3.5-turbo-0125",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "1. Who is the \"King of Pop\"?\n- Michael Jackson (correct)\n- Prince\n- Madonna\n- Beyonce\n\n2. What band sings \"Stairway to Heaven\"?\n- Led Zeppelin (correct)\n- The Rolling Stones\n- Pink Floyd\n- The Beatles\n\n3. Which artist sang \"Hello\"?\n- Adele (correct)\n- Taylor Swift\n- Justin Bieber\n- Drake\n\n4. What is the main instrument in a rock band?\n- Guitar (correct)\n- Drum\n- Piano\n- Violin\n\n5. Who is known as the \"Queen of Soul\"?\n- Aretha Franklin (correct)\n- Diana Ross\n- Whitney Houston\n- Mariah Carey\n\n6. Which band sings \"Hotel California\"?\n- Eagles (correct)\n- AC/DC\n- Queen\n- Nirvana\n\n7. What is the genre of music Beyonce is known for?\n- R&B (correct)\n- Country\n- Jazz\n- Reggae\n\n8. Who won the first season of \"American Idol\"?\n- Kelly Clarkson (correct)\n- Adam Lambert\n- Carrie Underwood\n- Jennifer Hudson\n\n```json\n{\n  \"id\": 123,\n  \"topic\": \"Music\",\n  \"content\": {\n    \"correct_answer\": \"Michael Jackson\",\n    \"options\": [\"Prince\", \"Madonna\", \"Beyonce\"]\n  }\n}\n```"
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 87,
+            "completion_tokens": 287,
+            "total_tokens": 374
+          },
+          "system_fingerprint": null
+        }
+  recorded_at: Wed, 15 May 2024 03:32:53 GMT
+recorded_with: VCR 6.2.0
