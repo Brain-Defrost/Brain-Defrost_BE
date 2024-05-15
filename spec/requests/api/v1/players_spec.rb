@@ -51,48 +51,54 @@ RSpec.describe 'Players API', type: :request do
         end
       end
 
-      # response(400, 'display name blank') do
-      #   # let(:game_id) { create(:game).id }
-      #   let(:params) { {display_name: ''} }
+      response(400, 'Invalid or missing data') do
+        let(:game_id) { create(:game).id }
+        let(:params) { {display_name: 'if you came from Games API then you know this is yet another really long display name'} }
 
-      #   after do |example|
-      #     example.metadata[:response][:content] = {
-      #       'application/json' => {
-      #         example: JSON.parse(response.body, symbolize_names: true)
-      #       }
-      #     }
-      #   end
-      #   run_test!
-      # end
+        run_test! do |example|
+          expect(response.status).to eq 400
 
-      # response(404, 'invalid game id') do
-      #   # let(:game_id) { create(:game).id }
-      #   let(:id) { -1 }
+          error = JSON.parse(response.body, symbolize_names: true)[:error]
+          expect(error[:message]).to eq "Validation failed: Display name is too long (maximum is 30 characters)"
+        end
+      end
 
-      #   after do |example|
-      #     example.metadata[:response][:content] = {
-      #       'application/json' => {
-      #         example: JSON.parse(response.body, symbolize_names: true)
-      #       }
-      #     }
-      #   end
-      #   run_test!
-      # end
+      response(400, 'Invalid or missing data') do
+        let(:game_id) { create(:game).id }
+        let(:params) { {display_name: ''} }
 
-      # response(422, 'display name taken') do
-      #   # let(:game_id) { create(:game).id }
-      #   # let(:player) { create(:player, display_name: 'trivia-ninja') }
-      #   let(:params) { {display_name: 'trivia-ninja'} }
+        run_test! do |example|
+          expect(response.status).to eq 400
 
-      #   after do |example|
-      #     example.metadata[:response][:content] = {
-      #       'application/json' => {
-      #         example: JSON.parse(response.body, symbolize_names: true)
-      #       }
-      #     }
-      #   end
-      #   run_test!
-      # end
+          error = JSON.parse(response.body, symbolize_names: true)[:error]
+          expect(error[:message]).to eq "Validation failed: Display name can't be blank, Display name is too short (minimum is 1 character)"
+        end
+      end
+
+      response(404, 'Invalid or missing data') do
+        let(:game_id) { -1 }
+        let(:params) { {display_name: 'I know all the facts'} }
+
+        run_test! do |example|
+          expect(response.status).to eq 404
+
+          error = JSON.parse(response.body, symbolize_names: true)[:error]
+          expect(error[:message]).to eq "Couldn't find Game with 'id'=-1"
+        end
+      end
+
+      response(422, 'Display name taken') do
+        let(:game_id) { create(:game).id }
+        before { create(:player, display_name: 'trivia-ninja', game_id: game_id) }
+        let(:params) { {display_name: 'trivia-ninja'} }
+
+        run_test! do |example|
+          expect(response.status).to eq 422
+
+          error = JSON.parse(response.body, symbolize_names: true)[:error]
+          expect(error[:message]).to eq "Validation failed: Display name has already been taken"
+        end
+      end
     end
   end
 
