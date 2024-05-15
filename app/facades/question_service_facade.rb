@@ -4,10 +4,7 @@ class QuestionServiceFacade
     topic = game.topic
 
     service_response = QuestionService.new(number, topic).call
-
-    # temp fix to check other features until questions service fixed, this can't stay
-    service_response = File.read("spec/fixtures/question_service_2.json")
-
+    
     parse_questions(service_response).map do |question_data|
       Question.new(question_data)
     end
