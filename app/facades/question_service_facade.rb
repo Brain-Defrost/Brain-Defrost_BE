@@ -4,15 +4,15 @@ class QuestionServiceFacade
     topic = game.topic
 
     service_response = QuestionService.new(number, topic).call
-    
+
     parse_questions(service_response).map do |question_data|
       Question.new(question_data)
     end
   end
 
   def self.parse_questions(service_response)
-    response = JSON.parse(service_response)
-    questions = response["choices"].first["message"]["content"]
+    service_response = JSON.parse(service_response)
+    questions = service_response["choices"].first["message"]["content"]
     
     parsed_data = []
 
