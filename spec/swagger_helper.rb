@@ -8,6 +8,9 @@ RSpec.configure do |config|
   # to ensure that it's configured to serve Swagger from the same folder
   config.openapi_root = Rails.root.join('swagger').to_s
 
+  # Strict schema validation true to prevent tests passing if response body include undocumented properties
+  config.openapi_strict_schema_validation = true
+
   # Define one or more Swagger documents and provide global metadata for each one
   # When you run the 'rswag:specs:swaggerize' rake task, the complete Swagger will
   # be generated at the provided relative path under openapi_root
@@ -19,17 +22,27 @@ RSpec.configure do |config|
       openapi: '3.0.1',
       info: {
         title: 'Brain Defrost API',
-        version: 'v1'
+        version: 'v1',
+        description: 'API endpoints with examples for a trivia game, its players, and its stats'
       },
       paths: {},
       servers: [
         {
-          url: 'https://{defaultHost}',
-          variables: {
-            defaultHost: {
-              default: 'www.example.com'
-            }
-          }
+          url: 'https://brain-defrost-f8afea5ead0a.herokuapp.com',
+        }
+      ],
+      tags: [
+        {
+          name: 'Game',
+          description: 'Everything for a single trivia game'
+        },
+        {
+          name: 'Player',
+          description: 'Access a trivia game\'s player(s)'
+        },
+        {
+          name: 'Stats',
+          description: 'Access a trivia game\'s stats'
         }
       ],
       components: {
@@ -39,7 +52,7 @@ RSpec.configure do |config|
             properties: {
               id: { type: 'string' },
               link: { type: 'string' },
-              started: { type: 'boolean'}, # check this data type
+              started: { type: 'boolean'},
               number_of_questions: { type: 'integer' },
               number_of_players: { type: 'integer' },
               topic: { type: 'string' },
