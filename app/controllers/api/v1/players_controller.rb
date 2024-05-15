@@ -6,7 +6,8 @@ class Api::V1::PlayersController < ApplicationController
   end
 
   def show
-    #code
+    player = Player.find(params[:id])
+    render json: PlayerSerializer.new(player)
   end
 
   def update

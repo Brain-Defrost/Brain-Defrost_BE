@@ -363,6 +363,12 @@ paths:
                           answers_incorrect:
                             type: integer
                             required: true
+        '400':
+          description: Invalid or missing data
+        '404':
+          description: Invalid or missing data
+        '422':
+          description: Display name taken
       requestBody:
         content:
           application/json:
@@ -371,6 +377,69 @@ paths:
               properties:
                 type: string
                 required: true
+  "/api/v1/games/{game_id}/players/{id}":
+    parameters:
+    - name: game_id
+      in: path
+      description: Game ID
+      required: true
+      schema:
+        type: string
+    - name: id
+      in: path
+      description: Player ID
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Find player by ID
+      tags:
+      - Player
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        required: true
+                      type:
+                        type: string
+                        required: true
+                      attributes:
+                        type: object
+                        properties:
+                          display_name:
+                            type: string
+                            required: true
+                          answers_correct:
+                            type: integer
+                            required: true
+                          answers_incorrect:
+                            type: integer
+                            required: true
+        '404':
+          description: Player or game ID not found
+    patch:
+      summary: update player
+      tags:
+      - Player
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete player
+      tags:
+      - Player
+      responses:
+        '200':
+          description: successful
 servers:
 - url: https://brain-defrost-f8afea5ead0a.herokuapp.com
 tags:
