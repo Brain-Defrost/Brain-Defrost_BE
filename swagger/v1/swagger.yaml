@@ -366,7 +366,7 @@ paths:
         '400':
           description: Invalid or missing data
         '404':
-          description: Invalid or missing data
+          description: Player's game not found
         '422':
           description: Display name taken
       requestBody:
@@ -428,7 +428,7 @@ paths:
         '404':
           description: Player or game ID not found
     patch:
-      summary: update player
+      summary: Update an existing player
       tags:
       - Player
       parameters:
@@ -467,6 +467,10 @@ paths:
                           answers_incorrect:
                             type: integer
                             required: true
+        '400':
+          description: Invalid or missing data
+        '404':
+          description: Player or game ID not found
       requestBody:
         content:
           application/json:

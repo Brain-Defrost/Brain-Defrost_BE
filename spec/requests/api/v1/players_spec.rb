@@ -3,7 +3,7 @@ require 'swagger_helper'
 RSpec.describe 'Players API', type: :request do
 
   path '/api/v1/games/{game_id}/players' do
-    
+
     post('Add new player to game') do
       tags 'Player'
       consumes 'application/json'
@@ -275,14 +275,52 @@ RSpec.describe 'Players API', type: :request do
       end
     end
 
-    delete('Delete a player') do
+    delete('Delete an existing player') do
       tags 'Player'
+      produces 'application/json'
+
       response(204, 'successful') do
         let(:game_id) { create(:game).id }
         let(:id) { create(:player, game_id: game_id).id }
 
         run_test! do |example|
           expect(response).to have_http_status(204)
+        end
+      end
+
+      response(404, 'invalid game id') do
+        let(:game_id) { -1 }
+        let(:id) { create(:player).id }
+  
+        schema({
+          type: :object,
+          properties: {
+            error: {
+              type: :object,
+              properties: {
+                message: { type: :string, required: true }
+              }
+            }
+          }
+        })
+  
+        run_test! do |example|
+          expect(response.status).to eq 404
+
+          error = JSON.parse(response.body, symbolize_names: true)[:error]
+          expect(error[:message]).to eq "Couldn't find Player with 'id'=#{id} and 'game_id'=-1"
+        end
+      end
+  
+      response(404, 'Player or game ID not found') do
+        let(:game_id) { create(:game).id }
+        let(:id) { -1 }
+  
+        run_test! do |example|
+          expect(response.status).to eq 404
+
+          error = JSON.parse(response.body, symbolize_names: true)[:error]
+          expect(error[:message]).to eq "Couldn't find Player with 'id'=-1 and 'game_id'=#{game_id}"
         end
       end
     end

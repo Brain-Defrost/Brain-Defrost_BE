@@ -17,7 +17,7 @@ class Api::V1::PlayersController < ApplicationController
   end
 
   def destroy
-    player = Player.find(params[:id])
+    player = Player.find_by!(game_id: params[:game_id], id: params[:id])
     player.destroy
   end
 
