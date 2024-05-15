@@ -123,7 +123,7 @@ paths:
         required: true
   "/api/v1/games/{id}":
     get:
-      summary: show game
+      summary: Find game by ID
       tags:
       - Game
       parameters:
@@ -216,6 +216,8 @@ paths:
                                           type: array
                                           items:
                                             type: string
+        '404':
+          description: Invalid game ID
     patch:
       summary: update game
       tags:
@@ -229,7 +231,7 @@ paths:
           type: integer
       responses:
         '200':
-          description: successful
+          description: Update game
           content:
             application/json:
               schema:

@@ -205,7 +205,7 @@ RSpec.describe 'Game API', type: :request do
 
     path '/api/v1/games/{id}' do
 
-      get('show game') do
+      get('Find game by ID') do
         tags 'Game'
         produces 'application/json'
         parameter name: :id, in: :path, type: :integer, description: 'Game ID'
@@ -310,6 +310,17 @@ RSpec.describe 'Game API', type: :request do
           end
         end
 
+        response(404, 'Invalid game ID') do
+          let(:id) { -1 }
+
+          run_test! do |example|
+            expect(response.status).to eq 404
+
+            error = JSON.parse(response.body, symbolize_names: true)[:error]
+            expect(error[:message]).to eq "Couldn't find Game with 'id'=-1"
+          end
+        end
+
       patch('update game') do
         tags 'Game'
         consumes 'application/json'
@@ -323,7 +334,7 @@ RSpec.describe 'Game API', type: :request do
           }
         }
 
-        response(200, 'successful') do
+        response(200, 'Update game') do
           let(:game_2) { create(:game, started: false) }
           before { 2.times do create(:player, game_id: game_2.id) end}
           let(:id) { game_2.id }
