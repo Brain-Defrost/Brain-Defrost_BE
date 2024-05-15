@@ -3,101 +3,377 @@ openapi: 3.0.1
 info:
   title: Brain Defrost API
   version: v1
+  description: API endpoints with examples for a trivia game, its players, and its
+    stats
 paths:
   "/api/v1/games":
     post:
-      summary: create game
+      summary: Create a new trivia game
+      tags:
+      - Game
+      parameters: []
       responses:
-        '200':
+        '201':
           description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      type:
+                        type: string
+                      attributes:
+                        type: object
+                        properties:
+                          link:
+                            type: string
+                          started:
+                            type: boolean
+                          number_of_questions:
+                            type: integer
+                          number_of_players:
+                            type: integer
+                          topic:
+                            type: string
+                          time_limit:
+                            type: integer
+                      relationships:
+                        type: object
+                        properties:
+                          players:
+                            type: object
+                            properties:
+                              data:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    type:
+                                      type: string
+                                    attributes:
+                                      type: object
+                                      properties:
+                                        display_name:
+                                          type: string
+                                        answers_correct:
+                                          type: integer
+                                        answers_incorrect:
+                                          type: integer
+                          questions:
+                            type: object
+                            properties:
+                              data:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type:
+                                      - string
+                                      - 'null'
+                                    type:
+                                      type: string
+                                    attributes:
+                                      type: object
+                                      properties:
+                                        topic:
+                                          type: string
+                                        question_text:
+                                          type: string
+                                        question_number:
+                                          type: integer
+                                        answer:
+                                          type: string
+                                        options:
+                                          type: array
+                                          items:
+                                            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                topic:
+                  type: string
+                  required: true
+                number_of_questions:
+                  type: integer
+                  required: true
+                time_limit:
+                  type: integer
+                  required: true
+                number_of_players:
+                  type: integer
+                  required: true
+                display_name:
+                  type: string
+                  required: true
+                link:
+                  type: string
+        required: true
   "/api/v1/games/{id}":
-    parameters:
-    - name: id
-      in: path
-      description: id
-      required: true
-      schema:
-        type: string
     get:
       summary: show game
+      tags:
+      - Game
+      parameters:
+      - name: id
+        in: path
+        description: Game ID
+        required: true
+        schema:
+          type: integer
       responses:
         '200':
           description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      type:
+                        type: string
+                      attributes:
+                        type: object
+                        properties:
+                          link:
+                            type: string
+                          started:
+                            type: boolean
+                          number_of_questions:
+                            type: integer
+                          number_of_players:
+                            type: integer
+                          topic:
+                            type: string
+                          time_limit:
+                            type: integer
+                      relationships:
+                        type: object
+                        properties:
+                          players:
+                            type: object
+                            properties:
+                              data:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    type:
+                                      type: string
+                                    attributes:
+                                      type: object
+                                      properties:
+                                        display_name:
+                                          type: string
+                                        answers_correct:
+                                          type: integer
+                                        answers_incorrect:
+                                          type: integer
+                          questions:
+                            type: object
+                            properties:
+                              data:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type:
+                                      - string
+                                      - 'null'
+                                    type:
+                                      type: string
+                                    attributes:
+                                      type: object
+                                      properties:
+                                        topic:
+                                          type: string
+                                        question_text:
+                                          type: string
+                                        question_number:
+                                          type: integer
+                                        answer:
+                                          type: string
+                                        options:
+                                          type: array
+                                          items:
+                                            type: string
     patch:
       summary: update game
+      tags:
+      - Game
+      parameters:
+      - name: id
+        in: path
+        description: Game ID
+        required: true
+        schema:
+          type: integer
       responses:
         '200':
           description: successful
-    put:
-      summary: update game
-      responses:
-        '200':
-          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      type:
+                        type: string
+                      attributes:
+                        type: object
+                        properties:
+                          link:
+                            type: string
+                          started:
+                            type: boolean
+                          number_of_questions:
+                            type: integer
+                          number_of_players:
+                            type: integer
+                          topic:
+                            type: string
+                          time_limit:
+                            type: integer
+                      relationships:
+                        type: object
+                        properties:
+                          players:
+                            type: object
+                            properties:
+                              data:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    type:
+                                      type: string
+                                    attributes:
+                                      type: object
+                                      properties:
+                                        display_name:
+                                          type: string
+                                        answers_correct:
+                                          type: integer
+                                        answers_incorrect:
+                                          type: integer
+                          questions:
+                            type: object
+                            properties:
+                              data:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type:
+                                      - string
+                                      - 'null'
+                                    type:
+                                      type: string
+                                    attributes:
+                                      type: object
+                                      properties:
+                                        topic:
+                                          type: string
+                                        question_text:
+                                          type: string
+                                        question_number:
+                                          type: integer
+                                        answer:
+                                          type: string
+                                        options:
+                                          type: array
+                                          items:
+                                            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type: boolean
+                required: true
   "/api/v1/games/{game_id}/players":
-    parameters:
-    - name: game_id
-      in: path
-      description: game_id
-      required: true
-      schema:
-        type: string
     post:
-      summary: create player
+      summary: Add new player to game
+      tags:
+      - Player
+      parameters:
+      - name: game_id
+        in: path
+        description: Game ID
+        required: true
+        schema:
+          type: string
       responses:
-        '200':
-          description: successful
-  "/api/v1/games/{game_id}/players/{id}":
-    parameters:
-    - name: game_id
-      in: path
-      description: game_id
-      required: true
-      schema:
-        type: string
-    - name: id
-      in: path
-      description: id
-      required: true
-      schema:
-        type: string
-    get:
-      summary: show player
-      responses:
-        '200':
-          description: successful
-    patch:
-      summary: update player
-      responses:
-        '200':
-          description: successful
-    put:
-      summary: update player
-      responses:
-        '200':
-          description: successful
-    delete:
-      summary: delete player
-      responses:
-        '200':
-          description: successful
-  "/api/v1/games/{game_id}/stats":
-    parameters:
-    - name: game_id
-      in: path
-      description: game_id
-      required: true
-      schema:
-        type: string
-    get:
-      summary: show stat
-      responses:
-        '200':
-          description: successful
+        '201':
+          description: successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        required: true
+                      type:
+                        type: string
+                        required: true
+                      attributes:
+                        type: object
+                        properties:
+                          display_name:
+                            type: string
+                            required: true
+                          answers_correct:
+                            type: integer
+                            required: true
+                          answers_incorrect:
+                            type: integer
+                            required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type: string
+                required: true
 servers:
-- url: https://{defaultHost}
-  variables:
-    defaultHost:
-      default: www.example.com
+- url: https://brain-defrost-f8afea5ead0a.herokuapp.com
+tags:
+- name: Game
+  description: Everything for a single trivia game
+- name: Player
+  description: Access a trivia game's player(s)
+- name: Stats
+  description: Access a trivia game's stats
 components:
   schemas:
     game:

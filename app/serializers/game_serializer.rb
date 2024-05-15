@@ -5,7 +5,7 @@ class GameSerializer
   # has_many :players
   # has_many :questions
 
-  def initialize(game, questions = [])
+  def self.format(game, questions = [])
     {
       data: {
         id: game.id,
