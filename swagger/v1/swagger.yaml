@@ -217,9 +217,9 @@ paths:
                                           items:
                                             type: string
         '404':
-          description: Invalid game ID
+          description: Game not found
     patch:
-      summary: update game
+      summary: Update an existing game
       tags:
       - Game
       parameters:
@@ -231,7 +231,7 @@ paths:
           type: integer
       responses:
         '200':
-          description: Update game
+          description: successful
           content:
             application/json:
               schema:
@@ -312,6 +312,8 @@ paths:
                                           type: array
                                           items:
                                             type: string
+        '404':
+          description: Game not found
       requestBody:
         content:
           application/json:

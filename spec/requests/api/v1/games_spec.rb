@@ -1,5 +1,4 @@
 require 'swagger_helper'
-require 'securerandom'
 
 RSpec.describe 'Game API', type: :request do
 
@@ -310,7 +309,7 @@ RSpec.describe 'Game API', type: :request do
           end
         end
 
-        response(404, 'Invalid game ID') do
+        response(404, 'Game not found') do
           let(:id) { -1 }
 
           run_test! do |example|
@@ -321,7 +320,7 @@ RSpec.describe 'Game API', type: :request do
           end
         end
 
-      patch('update game') do
+      patch('Update an existing game') do
         tags 'Game'
         consumes 'application/json'
         produces 'application/json'
@@ -334,7 +333,7 @@ RSpec.describe 'Game API', type: :request do
           }
         }
 
-        response(200, 'Update game') do
+        response(200, 'successful') do
           let(:game_2) { create(:game, started: false) }
           before { 2.times do create(:player, game_id: game_2.id) end}
           let(:id) { game_2.id }
@@ -432,6 +431,18 @@ RSpec.describe 'Game API', type: :request do
 
             questions = parsed_data[:relationships][:questions][:data]
             expect(questions.size).to eq 0
+          end
+        end
+
+        response(404, 'Game not found') do
+          let(:id) { -1 }
+          let(:params) { { started: true } }
+
+          run_test! do |example|
+            expect(response.status).to eq 404
+
+            error = JSON.parse(response.body, symbolize_names: true)[:error]
+            expect(error[:message]).to eq "Couldn't find Game with 'id'=-1"
           end
         end
       end
