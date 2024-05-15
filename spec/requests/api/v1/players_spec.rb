@@ -292,18 +292,6 @@ RSpec.describe 'Players API', type: :request do
         let(:game_id) { -1 }
         let(:id) { create(:player).id }
   
-        schema({
-          type: :object,
-          properties: {
-            error: {
-              type: :object,
-              properties: {
-                message: { type: :string, required: true }
-              }
-            }
-          }
-        })
-  
         run_test! do |example|
           expect(response.status).to eq 404
 

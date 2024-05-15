@@ -122,17 +122,17 @@ paths:
                   type: string
         required: true
   "/api/v1/games/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: Game ID
+      required: true
+      schema:
+        type: string
     get:
       summary: Find game by ID
       tags:
       - Game
-      parameters:
-      - name: id
-        in: path
-        description: Game ID
-        required: true
-        schema:
-          type: integer
       responses:
         '200':
           description: successful
@@ -222,13 +222,7 @@ paths:
       summary: Update an existing game
       tags:
       - Game
-      parameters:
-      - name: id
-        in: path
-        description: Game ID
-        required: true
-        schema:
-          type: integer
+      parameters: []
       responses:
         '200':
           description: successful
@@ -320,8 +314,9 @@ paths:
             schema:
               type: object
               properties:
-                type: boolean
-                required: true
+                started:
+                  type: boolean
+                  required: true
   "/api/v1/games/{game_id}/players":
     post:
       summary: Add new player to game
@@ -484,12 +479,14 @@ paths:
                 answers_incorrect:
                   type: integer
     delete:
-      summary: Delete a player
+      summary: Delete an existing player
       tags:
       - Player
       responses:
         '204':
           description: successful
+        '404':
+          description: Player or game ID not found
 servers:
 - url: https://brain-defrost-f8afea5ead0a.herokuapp.com
 tags:
