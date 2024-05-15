@@ -27,9 +27,6 @@ class QuestionService
 
     response.body
 
-    # temp fix to check other features until questions service fixed, this can't stay
-    json_music_questions = File.read("spec/fixtures/question_service_2.json")
-
     rescue StandardError => e
       raise "Error calling OpenAI API: #{e.message}"
     nil
