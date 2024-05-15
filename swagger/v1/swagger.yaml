@@ -95,6 +95,8 @@ paths:
                                           type: array
                                           items:
                                             type: string
+        '400':
+          description: Invalid or missing data
       requestBody:
         content:
           application/json:

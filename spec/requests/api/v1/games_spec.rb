@@ -128,6 +128,78 @@ RSpec.describe 'Game API', type: :request do
             expect(questions.size).to eq params[:number_of_questions]
           end
         end
+
+        response(400, 'Missing display name') do
+          let(:params) { {
+            topic: "music",
+            number_of_questions: 8,
+            time_limit: 30,
+            number_of_players: 7,
+            display_name: "",
+            link: "www.example.com/#{SecureRandom.hex(5)}" # remove later
+          } }
+
+          run_test! do |example|
+            expect(response.status).to eq 400
+
+            error = JSON.parse(response.body, symbolize_names: true)[:error]
+            expect(error[:message]).to eq "Validation failed: Display name can't be blank, Display name is too short (minimum is 1 character)"
+          end
+        end
+
+        response(400, 'Invalid display name') do
+          let(:params) { {
+            topic: "music",
+            number_of_questions: 8,
+            time_limit: 30,
+            number_of_players: 7,
+            display_name: "this is a really really long user name in order to make sure it goes over the limit",
+            link: "www.example.com/#{SecureRandom.hex(5)}" # remove later
+          } }
+
+          run_test! do |example|
+            expect(response.status).to eq 400
+
+            error = JSON.parse(response.body, symbolize_names: true)[:error]
+            expect(error[:message]).to eq "Validation failed: Display name is too long (maximum is 30 characters)"
+          end
+        end
+
+        response(400, 'Provided values not in range') do
+          let(:params) { {
+            topic: "music",
+            number_of_questions: 20,
+            time_limit: 300,
+            number_of_players: 70,
+            display_name: "",
+            link: "www.example.com/#{SecureRandom.hex(5)}" # remove later
+          } }
+
+          run_test! do |example|
+            expect(response.status).to eq 400
+
+            error = JSON.parse(response.body, symbolize_names: true)[:error]
+            expect(error[:message]).to eq "Validation failed: Number of questions must be in 1..10, Time limit must be in 5..120, Number of players must be in 1..35"
+          end
+        end
+
+        response(400, 'Invalid or missing data') do
+          let(:params) { {
+            topic: "",
+            number_of_questions: "",
+            time_limit: "",
+            number_of_players: "",
+            display_name: "",
+            link: "" # remove later
+          } }
+
+          run_test! do |example|
+            expect(response.status).to eq 400
+
+            error = JSON.parse(response.body, symbolize_names: true)[:error]
+            expect(error[:message]).to eq "Validation failed: Topic can't be blank, Number of questions can't be blank, Number of questions is not a number, Time limit can't be blank, Time limit is not a number, Number of players can't be blank, Number of players is not a number, Link can't be blank"
+          end
+        end
       end
     end
 
