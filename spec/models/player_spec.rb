@@ -17,4 +17,41 @@ RSpec.describe Player, type: :model do
   describe "associations" do
     it { should belong_to(:game) }
   end
+
+  describe "instance methods" do
+    before do
+      game = create(:game)
+      @player = Player.create!({display_name: "OP", game_id: game.id})
+    end
+
+    describe "#update_correct_answers" do
+      it "updates questions_correct array and answers_correct integer" do
+        @player.update_correct_answers(1)
+        @player.update_correct_answers(2)
+
+        expect(@player.questions_correct).to eq(["1", "2"])
+        expect(@player.answers_correct).to eq(2)
+      end
+
+      it "doesn't display duplicate question numbers in the questions array" do
+        expect(@player.questions_correct).to eq([])
+
+        @player.update_correct_answers(1)
+        @player.update_correct_answers(1)
+        expect(@player.questions_correct).to eq(["1"])
+        expect(@player.answers_correct).to eq(1)
+      end
+    end
+
+    describe "#update_incorrect_answers" do
+      it "updates answers_incorrect integer" do
+        @player.update_incorrect_answers
+        @player.update_incorrect_answers
+
+        expect(@player.answers_incorrect).to eq(2)
+        expect(@player.questions_correct).to eq([])
+        expect(@player.answers_correct).to eq(0)
+      end
+    end
+  end
 end

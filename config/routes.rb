@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :games, except: [:index, :destroy] do
-        resources :players, except: [:index]
+        resources :players
         get "/stats", to: "stats#show"
       end
     end

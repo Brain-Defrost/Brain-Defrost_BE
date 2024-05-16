@@ -1,6 +1,12 @@
 class Api::V1::PlayersController < ApplicationController
   before_action :accepting_players?, only: :create
 
+  def index
+    game = Game.find(params[:game_id])
+    players = game.players
+    render json: PlayerSerializer.new(players)
+  end
+
   def create
       player = @game.players.create!(player_params)
       render json: PlayerSerializer.new(player), status: :created
@@ -12,8 +18,13 @@ class Api::V1::PlayersController < ApplicationController
   end
 
   def update
-    player = Player.find_by!(game_id: params[:game_id])
-    player.update!(player_params)
+    player = Player.find_by!(game_id: params[:game_id], id: params[:id])
+    if params[:correct] == true
+      player.update_correct_answers(params[:question])
+    else
+      player.update_incorrect_answers
+    end
+    player.save!
     render json: PlayerSerializer.new(player)
   end
 
@@ -33,6 +44,6 @@ class Api::V1::PlayersController < ApplicationController
   end
   
   def player_params
-    params.permit(:display_name, :answers_correct, :answers_incorrect)
+    params.permit(:display_name)
   end
 end
