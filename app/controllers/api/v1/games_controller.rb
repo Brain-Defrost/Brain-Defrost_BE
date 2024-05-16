@@ -21,7 +21,7 @@ class Api::V1::GamesController < ApplicationController
 
   private
   def new_game_params
-    params.permit(:topic, :number_of_questions, :number_of_players, :time_limit, :link)
+    params.permit(:topic, :number_of_questions, :number_of_players, :time_limit)
   end
 
   def game_params
