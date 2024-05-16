@@ -100,6 +100,32 @@ RSpec.describe 'Players API', type: :request do
           expect(error[:message]).to eq "Validation failed: Display name has already been taken"
         end
       end
+
+      response(403, 'Forbidden - game started') do
+        let(:game_id) { create(:game, started: true).id }
+        before { create(:player, display_name: 'trivia-ninja', game_id: game_id) }
+        let(:params) { {display_name: 'trivia-ninja'} }
+
+        run_test! do |example|
+          expect(response.status).to eq 403
+
+          error = JSON.parse(response.body, symbolize_names: true)[:error]
+          expect(error[:message]).to eq "Validation failed: Display name has already been taken"
+        end
+      end
+
+      response(403, 'Forbidden. New players may not join') do
+        let(:game_id) { create(:game).id }
+        before { create(:player, display_name: 'trivia-ninja', game_id: game_id) }
+        let(:params) { {display_name: 'trivia-ninja'} }
+
+        run_test! do |example|
+          expect(response.status).to eq 403
+
+          error = JSON.parse(response.body, symbolize_names: true)[:error]
+          expect(error[:message]).to eq "Validation failed: Display name has already been taken"
+        end
+      end
     end
   end
 
