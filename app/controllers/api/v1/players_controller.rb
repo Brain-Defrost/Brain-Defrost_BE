@@ -27,7 +27,7 @@ class Api::V1::PlayersController < ApplicationController
     @game = Game.find(params[:game_id])
     return render json: { error: { message: "Game started. New players may not join." } }, status: :forbidden if @game.started?
   
-    if @game.players.count >= game.number_of_players
+    if @game.players.count >= @game.number_of_players
       render json: { error: { message: "Max players reached. New players may not join." } }, status: :forbidden
     end
   end

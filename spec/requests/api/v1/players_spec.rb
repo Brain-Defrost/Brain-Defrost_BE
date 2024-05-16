@@ -101,29 +101,28 @@ RSpec.describe 'Players API', type: :request do
         end
       end
 
-      response(403, 'Forbidden - game started') do
+      response(403, 'Game has started') do
         let(:game_id) { create(:game, started: true).id }
-        before { create(:player, display_name: 'trivia-ninja', game_id: game_id) }
-        let(:params) { {display_name: 'trivia-ninja'} }
+        let(:params) { {display_name: 'here'} }
 
         run_test! do |example|
           expect(response.status).to eq 403
 
           error = JSON.parse(response.body, symbolize_names: true)[:error]
-          expect(error[:message]).to eq "Validation failed: Display name has already been taken"
+          expect(error[:message]).to eq "Game started. New players may not join."
         end
       end
 
-      response(403, 'Forbidden. New players may not join') do
-        let(:game_id) { create(:game).id }
-        before { create(:player, display_name: 'trivia-ninja', game_id: game_id) }
-        let(:params) { {display_name: 'trivia-ninja'} }
+      response(403, 'New players may not join game') do
+        let(:game_id) { create(:game, number_of_players: 1).id }
+        before { create(:player, display_name: 'player 1', game_id: game_id) }
+        let(:params) { {display_name: 'player 2'} }
 
         run_test! do |example|
           expect(response.status).to eq 403
 
           error = JSON.parse(response.body, symbolize_names: true)[:error]
-          expect(error[:message]).to eq "Validation failed: Display name has already been taken"
+          expect(error[:message]).to eq "Max players reached. New players may not join." 
         end
       end
     end

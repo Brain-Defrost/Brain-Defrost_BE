@@ -118,8 +118,6 @@ paths:
                 display_name:
                   type: string
                   required: true
-                link:
-                  type: string
         required: true
   "/api/v1/games/{id}":
     parameters:
@@ -364,6 +362,8 @@ paths:
           description: Player's game not found
         '422':
           description: Display name taken
+        '403':
+          description: New players may not join game
       requestBody:
         content:
           application/json:
