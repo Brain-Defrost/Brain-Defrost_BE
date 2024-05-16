@@ -18,7 +18,21 @@ RSpec.describe Question do
       expect(@question.topic).to eq("Music Trivia")
       expect(@question.question_text).to eq("What is the name of Rihanna's debut single?")
       expect(@question.answer).to eq("Pon de Replay")
-      expect(@question.options).to eq(["Umbrella", "Diamonds", "Love on the Brain", "Pon de Replay"])
+      expect(@question.options).to be_an(Array)
+    end
+
+    it 'places the correct answer in a different location every time' do
+      data_2 = {"id"=>9,
+      "topic"=>"Chess Trivia",
+      "question_text"=>"What is the most powerful piece in chess?",
+      "correct_answer"=>"Queen",
+      "options"=>["Queen", "King", "Knight", "Pawn"]}
+      @question_2 = Question.new(data_2)
+
+      correct_index = @question.options.index("Pon de Replay")
+      correct_index_2 = @question.options.index("Queen")
+      
+      expect(correct_index == correct_index_2).to be(false)
     end
   end
 end
