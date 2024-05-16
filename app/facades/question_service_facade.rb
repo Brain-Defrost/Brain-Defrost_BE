@@ -9,16 +9,26 @@ class QuestionServiceFacade
       Question.new(question_data)
     end
   end
-
+  
   def self.parse_questions(service_response)
-    service_response = JSON.parse(service_response)
-    questions = service_response["choices"].first["message"]["content"]
-    
     parsed_data = []
-
-    questions.split("```json\n").reject(&:empty?).map do |json_string|
-      parsed_data << JSON.parse(json_string.gsub("```", ""))
+    if service_response.class == Hash
+      
+      questions = service_response["choices"].first["message"]["content"]
+      
+      questions.split("```json\n").reject(&:empty?).map do |json_string|
+        parsed_data << JSON.parse("[#{json_string.gsub("```", "")}]")
+      end
+ 
+    else
+      service_response = JSON.parse(service_response)
+      
+      questions = service_response["choices"].first["message"]["content"]
+  
+      questions.split("```json\n").reject(&:empty?).map do |json_string|
+        parsed_data << JSON.parse(json_string.gsub("```", ""))
+      end
     end
-    parsed_data
+    parsed_data.flatten
   end
 end

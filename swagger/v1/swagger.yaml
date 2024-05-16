@@ -122,17 +122,17 @@ paths:
                   type: string
         required: true
   "/api/v1/games/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: Game ID
+      required: true
+      schema:
+        type: string
     get:
       summary: Find game by ID
       tags:
       - Game
-      parameters:
-      - name: id
-        in: path
-        description: Game ID
-        required: true
-        schema:
-          type: integer
       responses:
         '200':
           description: successful
@@ -222,13 +222,7 @@ paths:
       summary: Update an existing game
       tags:
       - Game
-      parameters:
-      - name: id
-        in: path
-        description: Game ID
-        required: true
-        schema:
-          type: integer
+      parameters: []
       responses:
         '200':
           description: successful
@@ -320,8 +314,9 @@ paths:
             schema:
               type: object
               properties:
-                type: boolean
-                required: true
+                started:
+                  type: boolean
+                  required: true
   "/api/v1/games/{game_id}/players":
     post:
       summary: Add new player to game
@@ -363,14 +358,222 @@ paths:
                           answers_incorrect:
                             type: integer
                             required: true
+        '400':
+          description: Invalid or missing data
+        '404':
+          description: Player's game not found
+        '422':
+          description: Display name taken
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                type: string
-                required: true
+                display_name:
+                  type: string
+                  required: true
+  "/api/v1/games/{game_id}/players/{id}":
+    parameters:
+    - name: game_id
+      in: path
+      description: Game ID
+      required: true
+      schema:
+        type: string
+    - name: id
+      in: path
+      description: Player ID
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Find player by ID
+      tags:
+      - Player
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        required: true
+                      type:
+                        type: string
+                        required: true
+                      attributes:
+                        type: object
+                        properties:
+                          display_name:
+                            type: string
+                            required: true
+                          answers_correct:
+                            type: integer
+                            required: true
+                          answers_incorrect:
+                            type: integer
+                            required: true
+        '404':
+          description: Player or game ID not found
+    patch:
+      summary: Update an existing player
+      tags:
+      - Player
+      parameters:
+      - name: game_id
+        in: path
+        description: Game ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        required: true
+                      type:
+                        type: string
+                        required: true
+                      attributes:
+                        type: object
+                        properties:
+                          display_name:
+                            type: string
+                            required: true
+                          answers_correct:
+                            type: integer
+                            required: true
+                          answers_incorrect:
+                            type: integer
+                            required: true
+        '400':
+          description: Invalid or missing data
+        '404':
+          description: Player or game ID not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                display_name:
+                  type: string
+                answers_correct:
+                  type: integer
+                answers_incorrect:
+                  type: integer
+    delete:
+      summary: Delete an existing player
+      tags:
+      - Player
+      responses:
+        '204':
+          description: successful
+        '404':
+          description: Player or game ID not found
+  "/api/v1/games/{game_id}/stats":
+    parameters:
+    - name: game_id
+      in: path
+      description: Game ID
+      required: true
+      schema:
+        type: string
+    get:
+      summary: List a game's stats
+      tags:
+      - Stats
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      type:
+                        type: string
+                      attributes:
+                        type: object
+                        properties:
+                          avg_correct_answers:
+                            type: number
+                            format: float
+                            required: true
+                      relationships:
+                        type: object
+                        properties:
+                          games:
+                            type: object
+                            properties:
+                              data:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    type:
+                                      type: string
+                                    attributes:
+                                      type: object
+                                      properties:
+                                        link:
+                                          type: string
+                                        started:
+                                          type: boolean
+                                        number_of_questions:
+                                          type: integer
+                                        number_of_players:
+                                          type: integer
+                                        topic:
+                                          type: string
+                                        time_limit:
+                                          type: integer
+                          players:
+                            type: object
+                            properties:
+                              data:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    type:
+                                      type: string
+                                    attributes:
+                                      type: object
+                                      properties:
+                                        display_name:
+                                          type: string
+                                        answers_correct:
+                                          type: integer
+                                        answers_incorrect:
+                                          type: integer
+        '404':
+          description: Game ID not found
 servers:
 - url: https://brain-defrost-f8afea5ead0a.herokuapp.com
 tags:
