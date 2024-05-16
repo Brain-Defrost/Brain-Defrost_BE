@@ -4,7 +4,7 @@ FactoryBot.define do
     number_of_questions { Faker::Number.within(range: 1..10) }
     time_limit { Faker::Number.within(range: 5..120) }
     number_of_players { Faker::Number.within(range: 1..35) }
-    started { Faker::Boolean.boolean }
+    started { false }
     link { Faker::Internet.url }
   end
 end
