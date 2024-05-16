@@ -8,8 +8,12 @@ class Question
   def initialize(data)
     @topic = data["topic"]
     @question_number = data["id"]
-    @question_text = data["question_text"]
+    @question_text = fix_question(data["question_text"])
     @answer = data["correct_answer"] 
     @options = data["options"]
+  end
+
+  def fix_question(data)
+    data.sub(/^\d+\.\s/, "")
   end
 end

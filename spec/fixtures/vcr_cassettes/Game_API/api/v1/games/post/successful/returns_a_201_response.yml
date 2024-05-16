@@ -7,11 +7,11 @@ http_interactions:
       encoding: UTF-8
       string: '{"model":"gpt-3.5-turbo","messages":[{"role":"user","content":"Write
         8 trivia questions about music, and phrase the answers in two words or less.
-        Return 1 correct answer and 3 incorrect answers. Format message[''content'']
-        as JSON with id and: a key named topic associated to the topic, a key named
-        correct_answer associated with the string of the correct answer and another
-        key named options associated to an array of the 4 strings of the generated
-        options","format":"json"}]}'
+        Return 1 correct answer and 3 incorrect answers. Format JSON with id and a
+        key named topic associated to the topic, a key named question_text associated
+        to the question, a key named correct_answer associated with the string of
+        the correct answer and another key named options associated to an array of
+        the 4 strings of the generated options","response_format":{"type":"json_object"}}]}'
     headers:
       User-Agent:
       - Faraday v2.9.0
@@ -29,7 +29,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 15 May 2024 03:32:54 GMT
+      - Wed, 15 May 2024 23:14:05 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -39,7 +39,7 @@ http_interactions:
       Openai-Organization:
       - user-cqno5n9tuxhuwnsfmv53dlcm
       Openai-Processing-Ms:
-      - '4196'
+      - '7387'
       Openai-Version:
       - '2020-10-01'
       Strict-Transport-Security:
@@ -51,52 +51,52 @@ http_interactions:
       X-Ratelimit-Remaining-Requests:
       - '9999'
       X-Ratelimit-Remaining-Tokens:
-      - '59885'
+      - '59877'
       X-Ratelimit-Reset-Requests:
       - 8.64s
       X-Ratelimit-Reset-Tokens:
-      - 115ms
+      - 123ms
       X-Request-Id:
-      - req_4f06c41a6ab5c54f6cab32a18644bc43
+      - req_b9a1808f31af9d2b0527500df26ae1d7
       Cf-Cache-Status:
       - DYNAMIC
       Set-Cookie:
-      - __cf_bm=wuSCZT1iwglYqkO5vEBUSPtd5jft7.KkycJzNGC5CAo-1715743974-1.0.1.1-GKjPm6gN0ufySQ9cgYL1Bhnp6aZaWBQD4NLYhtyV9mvyFyol0RKaqaH2ylK6ry59EbhVvh6OGOdUKjVLQ._Tsg;
-        path=/; expires=Wed, 15-May-24 04:02:54 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=NSWAGUEaZ8DO2Aw4dFZx3mP3n3Ps8iqRW2fF52oVIcs-1715814845-1.0.1.1-MDSFD7ROXVLU3EaN3NK68WH1NhjjSqglqmOAf.hYphQ7BZtUTrEeVrucrTOR0BYdRLWFnox70X1Hd0_XtEKshQ;
+        path=/; expires=Wed, 15-May-24 23:44:05 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=cm4RickqbRL7gHeWvuQeZcjPvRXQj7Pu_33tIH7tFd4-1715743974001-0.0.1.1-604800000;
+      - _cfuvid=6TzdG.TK9o6eHz4lc4TkCToSY6NKX09bI.GWXZlTj2w-1715814845610-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Server:
       - cloudflare
       Cf-Ray:
-      - 884010225d294644-DFW
+      - 8846d251cc227b18-DEN
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: |
         {
-          "id": "chatcmpl-9OzflIbyZBbd38jqk5549XpSA3E5D",
+          "id": "chatcmpl-9PI6oIQtDJ1jjZ74HWO42CoRWK07V",
           "object": "chat.completion",
-          "created": 1715743969,
+          "created": 1715814838,
           "model": "gpt-3.5-turbo-0125",
           "choices": [
             {
               "index": 0,
               "message": {
                 "role": "assistant",
-                "content": "1. Who is the \"King of Pop\"?\n- Michael Jackson (correct)\n- Prince\n- Madonna\n- Beyonce\n\n2. What band sings \"Stairway to Heaven\"?\n- Led Zeppelin (correct)\n- The Rolling Stones\n- Pink Floyd\n- The Beatles\n\n3. Which artist sang \"Hello\"?\n- Adele (correct)\n- Taylor Swift\n- Justin Bieber\n- Drake\n\n4. What is the main instrument in a rock band?\n- Guitar (correct)\n- Drum\n- Piano\n- Violin\n\n5. Who is known as the \"Queen of Soul\"?\n- Aretha Franklin (correct)\n- Diana Ross\n- Whitney Houston\n- Mariah Carey\n\n6. Which band sings \"Hotel California\"?\n- Eagles (correct)\n- AC/DC\n- Queen\n- Nirvana\n\n7. What is the genre of music Beyonce is known for?\n- R&B (correct)\n- Country\n- Jazz\n- Reggae\n\n8. Who won the first season of \"American Idol\"?\n- Kelly Clarkson (correct)\n- Adam Lambert\n- Carrie Underwood\n- Jennifer Hudson\n\n```json\n{\n  \"id\": 123,\n  \"topic\": \"Music\",\n  \"content\": {\n    \"correct_answer\": \"Michael Jackson\",\n    \"options\": [\"Prince\", \"Madonna\", \"Beyonce\"]\n  }\n}\n```"
+                "content": "```json\n{\n  \"id\": 1,\n  \"topic\": \"Music\",\n  \"question_text\": \"Who is the King of Pop?\",\n  \"correct_answer\": \"Michael Jackson\",\n  \"options\": [\"Prince\", \"Elvis Presley\", \"Justin Bieber\", \"Michael Jackson\"]\n},\n{\n  \"id\": 2,\n  \"topic\": \"Music\",\n  \"question_text\": \"What band had John Lennon in it?\",\n  \"correct_answer\": \"The Beatles\",\n  \"options\": [\"The Rolling Stones\", \"Led Zeppelin\", \"The Beach Boys\", \"The Beatles\"]\n},\n{\n  \"id\": 3,\n  \"topic\": \"Music\",\n  \"question_text\": \"What genre is known for its twangy guitars?\",\n  \"correct_answer\": \"Country\",\n  \"options\": [\"Jazz\", \"Rock\", \"Rap\", \"Country\"]\n},\n{\n  \"id\": 4,\n  \"topic\": \"Music\",\n  \"question_text\": \"Which city is known as the birthplace of jazz?\",\n  \"correct_answer\": \"New Orleans\",\n  \"options\": [\"Miami\", \"Chicago\", \"New York City\", \"New Orleans\"]\n},\n{\n  \"id\": 5,\n  \"topic\": \"Music\",\n  \"question_text\": \"Who is known as the Queen of Soul?\",\n  \"correct_answer\": \"Aretha Franklin\",\n  \"options\": [\"Whitney Houston\", \"Beyonce\", \"Diana Ross\", \"Aretha Franklin\"]\n},\n{\n  \"id\": 6,\n  \"topic\": \"Music\",\n  \"question_text\": \"What instrument does Yo-Yo Ma play?\",\n  \"correct_answer\": \"Cello\",\n  \"options\": [\"Violin\", \"Flute\", \"Cello\", \"Trumpet\"]\n},\n{\n  \"id\": 7,\n  \"topic\": \"Music\",\n  \"question_text\": \"Which artist is known for the song 'Purple Haze'?\",\n  \"correct_answer\": \"Jimi Hendrix\",\n  \"options\": [\"Eric Clapton\", \"Bob Dylan\", \"Jimi Hendrix\", \"David Bowie\"]\n},\n{\n  \"id\": 8,\n  \"topic\": \"Music\",\n  \"question_text\": \"What was Elvis Presley's nickname?\",\n  \"correct_answer\": \"The King\",\n  \"options\": [\"The Boss\", \"The King\", \"The Legend\", \"The Master\"]\n}\n```\n"
               },
               "logprobs": null,
               "finish_reason": "stop"
             }
           ],
           "usage": {
-            "prompt_tokens": 87,
-            "completion_tokens": 287,
-            "total_tokens": 374
+            "prompt_tokens": 91,
+            "completion_tokens": 501,
+            "total_tokens": 592
           },
           "system_fingerprint": null
         }
-  recorded_at: Wed, 15 May 2024 03:32:53 GMT
+  recorded_at: Wed, 15 May 2024 23:14:05 GMT
 recorded_with: VCR 6.2.0
