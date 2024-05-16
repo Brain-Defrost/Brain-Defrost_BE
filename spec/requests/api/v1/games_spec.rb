@@ -17,7 +17,6 @@ RSpec.describe 'Game API', type: :request do
           time_limit: { type: :integer, required: true },
           number_of_players: { type: :integer, required: true },
           display_name: { type: :string, required: true },
-          link: { type: :string } # remove later
         }
       }
 
@@ -28,7 +27,6 @@ RSpec.describe 'Game API', type: :request do
           time_limit: 30,
           number_of_players: 7,
           display_name: "trivia_genius",
-          link: "www.example.com/#{SecureRandom.hex(5)}" # remove later
         } }
 
         schema({
@@ -134,8 +132,7 @@ RSpec.describe 'Game API', type: :request do
           number_of_questions: 8,
           time_limit: 30,
           number_of_players: 7,
-          display_name: "",
-          link: "www.example.com/#{SecureRandom.hex(5)}" # remove later
+          display_name: ""
         } }
 
         run_test! do |example|
@@ -152,8 +149,7 @@ RSpec.describe 'Game API', type: :request do
           number_of_questions: 8,
           time_limit: 30,
           number_of_players: 7,
-          display_name: "this is a really really long user name in order to make sure it goes over the limit",
-          link: "www.example.com/#{SecureRandom.hex(5)}" # remove later
+          display_name: "this is a really really long user name in order to make sure it goes over the limit"
         } }
 
         run_test! do |example|
@@ -170,8 +166,7 @@ RSpec.describe 'Game API', type: :request do
           number_of_questions: 20,
           time_limit: 300,
           number_of_players: 70,
-          display_name: "",
-          link: "www.example.com/#{SecureRandom.hex(5)}" # remove later
+          display_name: ""
         } }
 
         run_test! do |example|
@@ -188,15 +183,14 @@ RSpec.describe 'Game API', type: :request do
           number_of_questions: "",
           time_limit: "",
           number_of_players: "",
-          display_name: "",
-          link: "" # remove later
+          display_name: ""
         } }
 
         run_test! do |example|
           expect(response.status).to eq 400
 
           error = JSON.parse(response.body, symbolize_names: true)[:error]
-          expect(error[:message]).to eq "Validation failed: Topic can't be blank, Number of questions can't be blank, Number of questions is not a number, Time limit can't be blank, Time limit is not a number, Number of players can't be blank, Number of players is not a number, Link can't be blank"
+          expect(error[:message]).to eq "Validation failed: Topic can't be blank, Number of questions can't be blank, Number of questions is not a number, Time limit can't be blank, Time limit is not a number, Number of players can't be blank, Number of players is not a number"
         end
       end
     end
