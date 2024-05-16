@@ -18,12 +18,13 @@ class Api::V1::PlayersController < ApplicationController
   end
 
   def update
-    player = Player.find_by!(game_id: params[:game_id])
+    player = Player.find_by!(game_id: params[:game_id], id: params[:id])
     if params[:correct] == true
       player.update_correct_answers(params[:question])
     else
       player.update_incorrect_answers
     end
+    player.save!
     render json: PlayerSerializer.new(player)
   end
 

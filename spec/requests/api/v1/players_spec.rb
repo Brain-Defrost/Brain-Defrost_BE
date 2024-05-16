@@ -31,7 +31,7 @@ RSpec.describe 'Players API', type: :request do
                       answers_incorrect: { type: :integer, required: true },
                       questions_correct: { 
                         type: :array,
-                        items: { type: :integer }
+                        items: { type: :string }
                       }
                     }
                   }
@@ -93,7 +93,7 @@ RSpec.describe 'Players API', type: :request do
                     answers_incorrect: { type: :integer, required: true },
                     questions_correct: { 
                       type: :array,
-                      items: { type: :integer }
+                      items: { type: :string }
                     }
                   }
                 }
@@ -219,7 +219,7 @@ RSpec.describe 'Players API', type: :request do
                     answers_incorrect: { type: :integer, required: true },
                     questions_correct: { 
                       type: :array,
-                      items: { type: :integer }
+                      items: { type: :string }
                     }
                   }
                 }
@@ -296,7 +296,7 @@ RSpec.describe 'Players API', type: :request do
                     answers_incorrect: { type: :integer, required: true },
                     questions_correct: { 
                       type: :array,
-                      items: { type: :integer }
+                      items: { type: :string }
                     }
                   }
                 }
@@ -312,7 +312,7 @@ RSpec.describe 'Players API', type: :request do
           expect(parsed_data[:id].to_i).to eq id
           expect(parsed_data[:type]).to eq "player"
           expect(parsed_data[:attributes][:answers_correct]).to eq 1
-          expect(parsed_data[:attributes][:questions_correct]).to eq [1]
+          expect(parsed_data[:attributes][:questions_correct]).to eq ["1"]
         end
       end
 

@@ -7,8 +7,9 @@ class Player < ApplicationRecord
   validates_presence_of :game_id
 
   def update_correct_answers(question)
-    self.questions_correct << question
-    self.answers_correct += 1
+    self.questions_correct << question.to_s
+    self.questions_correct.uniq!
+    self.answers_correct = self.questions_correct.size
   end
 
   def update_incorrect_answers

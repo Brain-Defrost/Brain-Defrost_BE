@@ -20,31 +20,30 @@ RSpec.describe Player, type: :model do
 
   describe "instance methods" do
     before do
-      data = {
-        "id"=>8,
-        "topic"=>"Music Trivia",
-        "question_text"=>"What is the name of Rihanna's debut single?",
-        "correct_answer"=>"Pon de Replay",
-        "options"=>["Umbrella", "Diamonds", "Love on the Brain", "Pon de Replay"]
-      }
-
-      question_1 = Question.new(data)
-      question_2 = Question.new(data)
-
-      @game = Game.create!({topic: "Music Trivia", number_of_questions: 2, number_of_players: 1})
-
-      @player = Player.create!({display_name: "OP", game_id: @game.id})
+      game = create(:game)
+      @player = Player.create!({display_name: "OP", game_id: game.id})
     end
 
-    describe "#update_answers" do
+    describe "#update_correct_answers" do
       it "updates questions_correct array and answers_correct integer" do
         @player.update_correct_answers(1)
         @player.update_correct_answers(2)
 
-        expect(@player.questions_correct).to eq([1, 2])
+        expect(@player.questions_correct).to eq(["1", "2"])
         expect(@player.answers_correct).to eq(2)
       end
 
+      it "doesn't display duplicate question numbers in the questions array" do
+        expect(@player.questions_correct).to eq([])
+
+        @player.update_correct_answers(1)
+        @player.update_correct_answers(1)
+        expect(@player.questions_correct).to eq(["1"])
+        expect(@player.answers_correct).to eq(1)
+      end
+    end
+
+    describe "#update_incorrect_answers" do
       it "updates answers_incorrect integer" do
         @player.update_incorrect_answers
         @player.update_incorrect_answers
