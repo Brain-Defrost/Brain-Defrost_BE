@@ -9,8 +9,8 @@ class Question
     @topic = data["topic"]
     @question_number = data["id"]
     @question_text = fix_question(data["question_text"])
-    @answer = data["correct_answer"] 
-    @options = data["options"]
+    @answer = data["correct_answer"]
+    @options = data["options"].shuffle
   end
 
   def fix_question(data)
