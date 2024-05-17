@@ -39,6 +39,12 @@ gem "jsonapi-serializer"
 gem 'rswag-api'
 gem 'rswag-ui'
 gem 'openai'
+
+
+
+
+
+# For background job delete
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
 
