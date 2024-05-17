@@ -1,12 +1,4 @@
 class StatSerializer
-  # include JSONAPI::Serializer
-  # attributes :avg_correct_answers
-  # include JSONAPI::Serializer
-  # attributes :link, :started, :number_of_questions, :number_of_players, :topic, :time_limit
-
-  # has_many :players
-  # has_many :questions
-
   def self.format(stat)
     {
       data: {
