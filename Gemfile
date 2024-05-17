@@ -33,15 +33,16 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
-# gem "rack-cors"
+gem "rack-cors"
 
+# API Gems
+gem "openai"
 gem "faraday"
 gem "jsonapi-serializer"
 
-gem 'openai'
-
-gem 'rswag-api'
-gem 'rswag-ui'
+# rswag for api docs
+gem "rswag-api"
+gem "rswag-ui"
 
 # For background job delete
 gem 'sidekiq'
@@ -52,7 +53,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
   gem "pry"
   gem "rspec-rails"
-  gem 'rswag-specs'
+  gem "rswag-specs"
   gem "factory_bot_rails"
 end
 
