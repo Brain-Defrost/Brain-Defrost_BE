@@ -34,15 +34,14 @@ gem "bootsnap", require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
+
 gem "faraday"
 gem "jsonapi-serializer"
-gem 'rswag-api'
-gem 'rswag-ui'
+
 gem 'openai'
 
-
-
-
+gem 'rswag-api'
+gem 'rswag-ui'
 
 # For background job delete
 gem 'sidekiq'
