@@ -316,17 +316,59 @@ paths:
                   type: boolean
                   required: true
   "/api/v1/games/{game_id}/players":
+    parameters:
+    - name: game_id
+      in: path
+      description: Game ID
+      required: true
+      schema:
+        type: string
+    get:
+      summary: List a game's players
+      tags:
+      - Player
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          required: true
+                        type:
+                          type: string
+                          required: true
+                        attributes:
+                          type: object
+                          properties:
+                            display_name:
+                              type: string
+                              required: true
+                            answers_correct:
+                              type: integer
+                              required: true
+                            answers_incorrect:
+                              type: integer
+                              required: true
+                            questions_correct:
+                              type: array
+                              items:
+                                type: string
+        '404':
+          description: Player's game not found
     post:
       summary: Add new player to game
       tags:
       - Player
-      parameters:
-      - name: game_id
-        in: path
-        description: Game ID
-        required: true
-        schema:
-          type: string
+      parameters: []
       responses:
         '201':
           description: successfully created
@@ -356,6 +398,10 @@ paths:
                           answers_incorrect:
                             type: integer
                             required: true
+                          questions_correct:
+                            type: array
+                            items:
+                              type: string
         '400':
           description: Invalid or missing data
         '404':
@@ -420,19 +466,17 @@ paths:
                           answers_incorrect:
                             type: integer
                             required: true
+                          questions_correct:
+                            type: array
+                            items:
+                              type: string
         '404':
           description: Player or game ID not found
     patch:
       summary: Update an existing player
       tags:
       - Player
-      parameters:
-      - name: game_id
-        in: path
-        description: Game ID
-        required: true
-        schema:
-          type: string
+      parameters: []
       responses:
         '200':
           description: successful
@@ -462,8 +506,10 @@ paths:
                           answers_incorrect:
                             type: integer
                             required: true
-        '400':
-          description: Invalid or missing data
+                          questions_correct:
+                            type: array
+                            items:
+                              type: string
         '404':
           description: Player or game ID not found
       requestBody:
@@ -472,12 +518,10 @@ paths:
             schema:
               type: object
               properties:
-                display_name:
-                  type: string
-                answers_correct:
+                question:
                   type: integer
-                answers_incorrect:
-                  type: integer
+                correct:
+                  type: boolean
     delete:
       summary: Delete an existing player
       tags:
@@ -517,6 +561,8 @@ paths:
                       attributes:
                         type: object
                         properties:
+                          game_id:
+                            type: number
                           avg_correct_answers:
                             type: number
                             format: float
@@ -576,6 +622,7 @@ paths:
           description: Game ID not found
 servers:
 - url: https://brain-defrost-f8afea5ead0a.herokuapp.com
+- url: https://localhost:3000
 tags:
 - name: Game
   description: Everything for a single trivia game
