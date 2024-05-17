@@ -89,7 +89,6 @@ RSpec.describe 'Stats API', type: :request do
 
         run_test! do |example|
           expect(response).to have_http_status(200)
-          # require 'pry'; binding.pry
           parsed_data = JSON.parse(response.body, symbolize_names: true)[:data]
 
           expect(parsed_data).to be_a(Hash)
@@ -100,6 +99,7 @@ RSpec.describe 'Stats API', type: :request do
 
           expect(attributes[:game_id]).to be_a(Integer)
           expect(attributes[:avg_correct_answers]).to be_a(Float)
+          expect(attributes[:avg_correct_answers]).to eq 50.0
 
           relationships = parsed_data[:relationships]
 
@@ -110,15 +110,10 @@ RSpec.describe 'Stats API', type: :request do
           expect( relationships[:games][:data].first[:type]).to be_a(String)
           expect( relationships[:games][:data].first[:attributes]).to be_a(Hash)
           expect( relationships[:games][:data].first[:attributes][:link]).to be_a(String)
-          # require 'pry'; binding.pry
-          # expect( relationships[:games][:data].first[:attributes][:started]).to be_a(Boolean)
           expect( relationships[:games][:data].first[:attributes][:number_of_questions]).to be_a(Integer)
           expect( relationships[:games][:data].first[:attributes][:number_of_players]).to be_a(Integer)
           expect( relationships[:games][:data].first[:attributes][:topic]).to be_a(String)
-          # require 'pry'; binding.pry
           expect( relationships[:games][:data].first[:attributes][:time_limit]).to be_a(Integer)
-
-
         end
       end
 
