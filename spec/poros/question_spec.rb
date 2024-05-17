@@ -19,6 +19,8 @@ RSpec.describe Question do
       expect(@question.question_text).to eq("What is the name of Rihanna's debut single?")
       expect(@question.answer).to eq("Pon de Replay")
       expect(@question.options).to be_an(Array)
+      expect(@question.options.length).to eq(4)
+      expect(@question.options.include?("Pon de Replay")).to eq(true)
     end
 
     it 'places the correct answer in a different location every time' do
