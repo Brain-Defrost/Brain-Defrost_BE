@@ -2,15 +2,25 @@
 
 ## Table of Contents
 [Summary](#summary)<br>
+-[Background](#background)
+-[Project Links](#project-links)
 [Schema](#schema)<br>
 [Instructions](#instructions)<br>
 -[Basic Setup](#basic-setup)<br>
 -[External API Setup](#external-api-setup)<br>
+-[Local Server](#local-server)<br>
+-[Testing](#testing)<br>
 [Dependencies/Gems](#dependenciesgems)<br>
 [Endpoints](#endpoints)<br>
 [Contributors](#contributors)
 
 ## Summary
+Brain Defrost is a web application designed to help people become more connected and engaged virtually via a trivia game. Generative AI is used to create custom trivia questions based on the topic and desired question count provided.
+
+To play, a user inputs a topic, number of questions, number of players, a time limit to answer questions, and what they'd like their display name to be. The user is then taken to the game's lobby and provided with a shareable link other players may use to join. Once everyone joins, players may start the game and enjoy answering trivia questions. The correct answer and a list of players who answered correctly is displayed after each question.
+
+### Background
+
 This project was completed for Turing's Capstone Project for Mod 4. [Part 1](https://mod4.turing.edu/projects/capstone/) of the project pertained planning and completing our app's minimum viable product (MVP). [Part 2](https://mod4.turing.edu/projects/capstone_expansion/) focused on adding additional features.
 
 ### Project Links
@@ -20,6 +30,7 @@ BE Repo (You're here! Welcome :sunglasses: )<br>
 [FE Deployment](https://brain-defrost.github.io/Brain-Defrost_FE/) (Play our game!)
 
 ## Schema
+
 ![schema diagram](image.png)
 
 ## Instructions
@@ -28,7 +39,7 @@ BE Repo (You're here! Welcome :sunglasses: )<br>
 2. In terminal, run `git clone <ssh or https path>`
 3. Navigate into the cloned project by running `cd tea-subscriptions`
 4. Run `bundle install` to install gems used for this project
-5. Setup the database migration and seed file by running `rails db:{drop,create,migrate}`
+5. Setup the database by running `rails db:{drop,create,migrate}`
 
 ### External API Setup
 Trivia question's for a game are created using [OpenAI's API](https://platform.openai.com/docs/api-reference/introduction). You must use your own API key in order to access it. To acquire an Open AI API key:
@@ -44,7 +55,7 @@ Trivia question's for a game are created using [OpenAI's API](https://platform.o
 
 To add your OpenAI API key to the rails app:
 
-1. Delete the `config/master.key` file
+1. If one already exists, delete the `config/master.key` file
 2. In the terminal, run `EDITOR="code --wait" rails credentials:edit`
    - This creates a new `config/master.key` file and opens a credentials file (`config/credentials.yml.enc`)
 3. Paste the code below in the credentials file that opens (can go above or below the secret key)
@@ -55,6 +66,12 @@ To add your OpenAI API key to the rails app:
 4. Close the credentials file and have fun coding
 
 
+> [!important]
+> Don't hard code your API key into a regular Rails file or share it with people. It's secret. The steps above help ensure it stays that way. The correct master key is required to open the encrypted credentials file you setup. The file containing your master key is already setup to not save to GitHub via `/config/master.key` code in the `.gitignore` file.
+>
+> You can think of Rails' credentials file similar to a `.env` file.
+> If you need to update the credentials file for any reason, simply use the `EDITOR="code --wait" rails credentials:edit` terminal command again.
+
 ### Local Server
 To start a local rails server:
 ```shell
@@ -63,7 +80,7 @@ rails server
 
 Endpoints may then be utilized in a browser by navigating to
 ```http
-https://localhost:3000
+http://localhost:3000
 ```
 And adding the desired api endpoint path to the end. A full list of options may be found in this README's [endpoints section](#endpoints).
 
