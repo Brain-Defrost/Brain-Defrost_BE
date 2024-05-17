@@ -3,8 +3,9 @@
   - default
   - mailers
   - critical
-:schedule:
-  delete_old_games:
-    ceon: "0 * * * *" #this tells to run every hour
-    class: "DeleteOldGamesJob"
-    queue: default
+:scheduler:
+  :schedule:
+    delete_old_games:
+      ceon: "0 * * * *" #this tells to run every hour
+      class: "DeleteOldGamesJob"
+      queue: default
