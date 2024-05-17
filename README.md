@@ -2,8 +2,8 @@
 
 ## Table of Contents
 [Summary](#summary)<br>
--[Background](#background)
--[Project Links](#project-links)
+-[Background](#background)<br>
+-[Project Links](#project-links)<br>
 [Schema](#schema)<br>
 [Instructions](#instructions)<br>
 -[Basic Setup](#basic-setup)<br>
@@ -30,6 +30,7 @@ BE Repo (You're here! Welcome :sunglasses: )<br>
 [FE Deployment](https://brain-defrost.github.io/Brain-Defrost_FE/) (Play our game!)
 
 ## Schema
+A game, player, and stat are all models saved in the Rails database. Questions are received from external API and processed as plain old ruby objects (POROs) before being sent to the front end.
 
 ![schema diagram](image.png)
 
