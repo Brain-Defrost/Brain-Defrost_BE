@@ -2,6 +2,7 @@
 
 ## Table of Contents
 [Summary](#summary)<br>
+[Schema](#schema)<br>
 [Instructions](#instructions)<br>
 -[Basic Setup](#basic-setup)<br>
 -[External API Setup](#external-api-setup)<br>
@@ -11,13 +12,16 @@
 
 
 ## Summary
-This project was completed for Turing's Capstone Project for Mod 4.  [Part 1](https://mod4.turing.edu/projects/capstone/) of the project pertained planning and completing our app's minimum viable product (MVP). [Part 2](https://mod4.turing.edu/projects/capstone_expansion/) focused on adding additional features.
+This project was completed for Turing's Capstone Project for Mod 4. [Part 1](https://mod4.turing.edu/projects/capstone/) of the project pertained planning and completing our app's minimum viable product (MVP). [Part 2](https://mod4.turing.edu/projects/capstone_expansion/) focused on adding additional features.
 
 ### Project Links
 BE Repo (You're here! Welcome :sunglasses: )<br>
 [FE Repo](https://github.com/Brain-Defrost/Brain-Defrost_FE) (Check out what our amazing FE team's code)<br>
 [BE Deployment](https://brain-defrost-f8afea5ead0a.herokuapp.com/)<br>
 [FE Deployment](https://brain-defrost.github.io/Brain-Defrost_FE/) (Play our game!)
+
+## Schema
+![schema diagram](image.png)
 
 ## Instructions
 ### Basic Setup
@@ -28,7 +32,7 @@ BE Repo (You're here! Welcome :sunglasses: )<br>
 5. Setup the database migration and seed file by running `rails db:{drop,create,migrate}`
 
 ### External API Setup
-Trivia question's for a game are created using [OpenAI's API](https://openai.com/api/). You must use your own API key in order to access it. To acquire an Open AI API key:
+Trivia question's for a game are created using [OpenAI's API](https://platform.openai.com/docs/api-reference/introduction). You must use your own API key in order to access it. To acquire an Open AI API key:
 
 1. Sign in or create an [OpenAI account](https://platform.openai.com/signup)
 2. Go to your [API keys page](https://platform.openai.com/account/api-keys)
