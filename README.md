@@ -10,13 +10,12 @@
 [Endpoints](#endpoints)<br>
 [Contributors](#contributors)
 
-
 ## Summary
 This project was completed for Turing's Capstone Project for Mod 4. [Part 1](https://mod4.turing.edu/projects/capstone/) of the project pertained planning and completing our app's minimum viable product (MVP). [Part 2](https://mod4.turing.edu/projects/capstone_expansion/) focused on adding additional features.
 
 ### Project Links
 BE Repo (You're here! Welcome :sunglasses: )<br>
-[FE Repo](https://github.com/Brain-Defrost/Brain-Defrost_FE) (Check out what our amazing FE team's code)<br>
+[FE Repo](https://github.com/Brain-Defrost/Brain-Defrost_FE) (Check out our amazing FE team's code)<br>
 [BE Deployment](https://brain-defrost-f8afea5ead0a.herokuapp.com/)<br>
 [FE Deployment](https://brain-defrost.github.io/Brain-Defrost_FE/) (Play our game!)
 
@@ -119,5 +118,11 @@ To access the API documentation on the local server. [Start](#local-server) the 
 If preferred, you can also use [Postman](https://www.postman.com/) rather than the browser's localhost, but you will still need to startup the local server using the `rails server` command.
 
 ## Contributors
-Backend - Jess, Laura, Martin<br>
-Frontend - Ethan, Tayla
+#### Backend
+Jessica Kohl - [GitHub](https://github.com/kohljd) <br>
+Laura Vega - [GitHub](https://github.com/laurarvegav)<br>
+Martin Chavez - [GitHub](https://github.com/Chavezgm)
+
+#### Frontend
+Ethan Duvall - [GitHub](https://github.com/EthanDuvall)<br>
+Tayla Phillips - [GitHub](https://github.com/tednaphil)
