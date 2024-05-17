@@ -361,7 +361,7 @@ paths:
                             questions_correct:
                               type: array
                               items:
-                                type: integer
+                                type: string
         '404':
           description: Player's game not found
     post:
@@ -401,7 +401,7 @@ paths:
                           questions_correct:
                             type: array
                             items:
-                              type: integer
+                              type: string
         '400':
           description: Invalid or missing data
         '404':
@@ -469,7 +469,7 @@ paths:
                           questions_correct:
                             type: array
                             items:
-                              type: integer
+                              type: string
         '404':
           description: Player or game ID not found
     patch:
@@ -509,7 +509,7 @@ paths:
                           questions_correct:
                             type: array
                             items:
-                              type: integer
+                              type: string
         '404':
           description: Player or game ID not found
       requestBody:
@@ -531,8 +531,98 @@ paths:
           description: successful
         '404':
           description: Player or game ID not found
+  "/api/v1/games/{game_id}/stats":
+    parameters:
+    - name: game_id
+      in: path
+      description: Game ID
+      required: true
+      schema:
+        type: string
+    get:
+      summary: List a game's stats
+      tags:
+      - Stats
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      type:
+                        type: string
+                      attributes:
+                        type: object
+                        properties:
+                          game_id:
+                            type: number
+                          avg_correct_answers:
+                            type: number
+                            format: float
+                            required: true
+                      relationships:
+                        type: object
+                        properties:
+                          games:
+                            type: object
+                            properties:
+                              data:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    type:
+                                      type: string
+                                    attributes:
+                                      type: object
+                                      properties:
+                                        link:
+                                          type: string
+                                        started:
+                                          type: boolean
+                                        number_of_questions:
+                                          type: integer
+                                        number_of_players:
+                                          type: integer
+                                        topic:
+                                          type: string
+                                        time_limit:
+                                          type: integer
+                          players:
+                            type: object
+                            properties:
+                              data:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    type:
+                                      type: string
+                                    attributes:
+                                      type: object
+                                      properties:
+                                        display_name:
+                                          type: string
+                                        answers_correct:
+                                          type: integer
+                                        answers_incorrect:
+                                          type: integer
+        '404':
+          description: Game ID not found
 servers:
 - url: https://brain-defrost-f8afea5ead0a.herokuapp.com
+- url: https://localhost:3000
 tags:
 - name: Game
   description: Everything for a single trivia game
