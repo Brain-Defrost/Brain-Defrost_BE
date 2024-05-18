@@ -1,0 +1,77 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://brain-defrost-be-questions.onrender.com/api/v1/questions
+    body:
+      encoding: UTF-8
+      string: number_of_questions=5&topic=doctor+who
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 18 May 2024 22:42:08 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '1043'
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 885f5ba93b3ea4ca-MIA
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Etag:
+      - W/"8729e6351d24e6920727d806420437c9"
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Vary:
+      - Accept, Origin, Accept-Encoding
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Rndr-Id:
+      - fd01c6c5-6e7a-4f79
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Render-Origin-Server:
+      - Render
+      X-Request-Id:
+      - 6aa12f3a-a47d-4e25-9386-5eb3da1bf557
+      X-Runtime:
+      - '6.107019'
+      X-Xss-Protection:
+      - '0'
+      Server:
+      - cloudflare
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":[{"id":null,"type":"question","attributes":{"question_text":"Who
+        is the Doctor''s archenemy?","question_number":"1","answer":"The Master","options":["The
+        Master","Cybermen","Daleks","Weeping Angels"]}},{"id":null,"type":"question","attributes":{"question_text":"What
+        is the Doctor''s main mode of transport?","question_number":"2","answer":"TARDIS","options":["Spaceship","TARDIS","Car","Bicycle"]}},{"id":null,"type":"question","attributes":{"question_text":"Who
+        was the first actor to play the Doctor?","question_number":"3","answer":"William
+        Hartnell","options":["Tom Baker","David Tennant","Matt Smith","William Hartnell"]}},{"id":null,"type":"question","attributes":{"question_text":"What
+        is the Doctor''s iconic tool called?","question_number":"4","answer":"Sonic
+        Screwdriver","options":["Sonic Screwdriver","Hammer","Laser Gun","Magic Wand"]}},{"id":null,"type":"question","attributes":{"question_text":"Which
+        planet is the Doctor from?","question_number":"5","answer":"Gallifrey","options":["Mars","Skaro","Earth","Gallifrey"]}}]}'
+  recorded_at: Sat, 18 May 2024 22:42:08 GMT
+recorded_with: VCR 6.2.0
