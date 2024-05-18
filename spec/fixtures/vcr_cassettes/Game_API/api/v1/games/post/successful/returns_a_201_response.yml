@@ -29,7 +29,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 15 May 2024 23:14:05 GMT
+      - Fri, 17 May 2024 23:59:58 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -39,7 +39,7 @@ http_interactions:
       Openai-Organization:
       - user-cqno5n9tuxhuwnsfmv53dlcm
       Openai-Processing-Ms:
-      - '7387'
+      - '7526'
       Openai-Version:
       - '2020-10-01'
       Strict-Transport-Security:
@@ -57,35 +57,35 @@ http_interactions:
       X-Ratelimit-Reset-Tokens:
       - 123ms
       X-Request-Id:
-      - req_b9a1808f31af9d2b0527500df26ae1d7
+      - req_2bab6f552c46a643a3f68892d9d0ad7d
       Cf-Cache-Status:
       - DYNAMIC
       Set-Cookie:
-      - __cf_bm=NSWAGUEaZ8DO2Aw4dFZx3mP3n3Ps8iqRW2fF52oVIcs-1715814845-1.0.1.1-MDSFD7ROXVLU3EaN3NK68WH1NhjjSqglqmOAf.hYphQ7BZtUTrEeVrucrTOR0BYdRLWFnox70X1Hd0_XtEKshQ;
-        path=/; expires=Wed, 15-May-24 23:44:05 GMT; domain=.api.openai.com; HttpOnly;
+      - __cf_bm=ElG9uGNwJJbqdljBiRGMF_wnHdsoC1Gk.Two4g7r7Zc-1715990398-1.0.1.1-R1ZQ4ggEtWepPu943FK_QcZRsONPGh3Dd9sR2QgpyW7HRP.S89jH.K05zXUqOu79ZtKaLI163wa.L.IOpF8zgQ;
+        path=/; expires=Sat, 18-May-24 00:29:58 GMT; domain=.api.openai.com; HttpOnly;
         Secure; SameSite=None
-      - _cfuvid=6TzdG.TK9o6eHz4lc4TkCToSY6NKX09bI.GWXZlTj2w-1715814845610-0.0.1.1-604800000;
+      - _cfuvid=zFW88_INjWPwpmVTKkPLNk.lXK2nISJ6Btlk.GG.1IA-1715990398201-0.0.1.1-604800000;
         path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None
       Server:
       - cloudflare
       Cf-Ray:
-      - 8846d251cc227b18-DEN
+      - 88579044ff907b0c-DEN
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: |
         {
-          "id": "chatcmpl-9PI6oIQtDJ1jjZ74HWO42CoRWK07V",
+          "id": "chatcmpl-9Q1mIO7rIWledKVXOvt3wU44sBIZz",
           "object": "chat.completion",
-          "created": 1715814838,
+          "created": 1715990390,
           "model": "gpt-3.5-turbo-0125",
           "choices": [
             {
               "index": 0,
               "message": {
                 "role": "assistant",
-                "content": "```json\n{\n  \"id\": 1,\n  \"topic\": \"Music\",\n  \"question_text\": \"Who is the King of Pop?\",\n  \"correct_answer\": \"Michael Jackson\",\n  \"options\": [\"Prince\", \"Elvis Presley\", \"Justin Bieber\", \"Michael Jackson\"]\n},\n{\n  \"id\": 2,\n  \"topic\": \"Music\",\n  \"question_text\": \"What band had John Lennon in it?\",\n  \"correct_answer\": \"The Beatles\",\n  \"options\": [\"The Rolling Stones\", \"Led Zeppelin\", \"The Beach Boys\", \"The Beatles\"]\n},\n{\n  \"id\": 3,\n  \"topic\": \"Music\",\n  \"question_text\": \"What genre is known for its twangy guitars?\",\n  \"correct_answer\": \"Country\",\n  \"options\": [\"Jazz\", \"Rock\", \"Rap\", \"Country\"]\n},\n{\n  \"id\": 4,\n  \"topic\": \"Music\",\n  \"question_text\": \"Which city is known as the birthplace of jazz?\",\n  \"correct_answer\": \"New Orleans\",\n  \"options\": [\"Miami\", \"Chicago\", \"New York City\", \"New Orleans\"]\n},\n{\n  \"id\": 5,\n  \"topic\": \"Music\",\n  \"question_text\": \"Who is known as the Queen of Soul?\",\n  \"correct_answer\": \"Aretha Franklin\",\n  \"options\": [\"Whitney Houston\", \"Beyonce\", \"Diana Ross\", \"Aretha Franklin\"]\n},\n{\n  \"id\": 6,\n  \"topic\": \"Music\",\n  \"question_text\": \"What instrument does Yo-Yo Ma play?\",\n  \"correct_answer\": \"Cello\",\n  \"options\": [\"Violin\", \"Flute\", \"Cello\", \"Trumpet\"]\n},\n{\n  \"id\": 7,\n  \"topic\": \"Music\",\n  \"question_text\": \"Which artist is known for the song 'Purple Haze'?\",\n  \"correct_answer\": \"Jimi Hendrix\",\n  \"options\": [\"Eric Clapton\", \"Bob Dylan\", \"Jimi Hendrix\", \"David Bowie\"]\n},\n{\n  \"id\": 8,\n  \"topic\": \"Music\",\n  \"question_text\": \"What was Elvis Presley's nickname?\",\n  \"correct_answer\": \"The King\",\n  \"options\": [\"The Boss\", \"The King\", \"The Legend\", \"The Master\"]\n}\n```\n"
+                "content": "[\n    {\n        \"id\": 1,\n        \"topic\": \"Music\",\n        \"question_text\": \"Which band opened Woodstock?\",\n        \"correct_answer\": \"Santana\",\n        \"options\": [\"The Who\", \"The Rolling Stones\", \"Jimi Hendrix\"]\n    },\n    {\n        \"id\": 2,\n        \"topic\": \"Music\",\n        \"question_text\": \"What genre is Elvis Presley known for?\",\n        \"correct_answer\": \"Rock\",\n        \"options\": [\"Jazz\", \"Reggae\", \"Classical\"]\n    },\n    {\n        \"id\": 3,\n        \"topic\": \"Music\",\n        \"question_text\": \"Who released 'Thriller'?\",\n        \"correct_answer\": \"Michael Jackson\",\n        \"options\": [\"Madonna\", \"Prince\", \"Whitney Houston\"]\n    },\n    {\n        \"id\": 4,\n        \"topic\": \"Music\",\n        \"question_text\": \"What instrument does Elton John play?\",\n        \"correct_answer\": \"Piano\",\n        \"options\": [\"Guitar\", \"Drums\", \"Trumpet\"]\n    },\n    {\n        \"id\": 5,\n        \"topic\": \"Music\",\n        \"question_text\": \"What is the Beatles' best-selling single?\",\n        \"correct_answer\": \"Hey Jude\",\n        \"options\": [\"Let It Be\", \"All You Need Is Love\", \"Help!\"]\n    },\n    {\n        \"id\": 6,\n        \"topic\": \"Music\",\n        \"question_text\": \"Who is known as the 'Queen of Pop'?\",\n        \"correct_answer\": \"Madonna\",\n        \"options\": [\"Britney Spears\", \"Lady Gaga\", \"Adele\"]\n    },\n    {\n        \"id\": 7,\n        \"topic\": \"Music\",\n        \"question_text\": \"Which 90s boy band was JC Chasez a member of?\",\n        \"correct_answer\": \"NSYNC\",\n        \"options\": [\"Backstreet Boys\", \"98 Degrees\", \"Hanson\"]\n    },\n    {\n        \"id\": 8,\n        \"topic\": \"Music\",\n        \"question_text\": \"Which famous opera was composed by Giuseppe Verdi?\",\n        \"correct_answer\": \"La Traviata\",\n        \"options\": [\"Carmen\", \"The Magic Flute\", \"The Barber of Seville\"]\n    }\n]"
               },
               "logprobs": null,
               "finish_reason": "stop"
@@ -93,10 +93,10 @@ http_interactions:
           ],
           "usage": {
             "prompt_tokens": 91,
-            "completion_tokens": 501,
-            "total_tokens": 592
+            "completion_tokens": 488,
+            "total_tokens": 579
           },
           "system_fingerprint": null
         }
-  recorded_at: Wed, 15 May 2024 23:14:05 GMT
+  recorded_at: Fri, 17 May 2024 23:59:58 GMT
 recorded_with: VCR 6.2.0

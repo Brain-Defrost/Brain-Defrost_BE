@@ -1,23 +1,23 @@
 {
-  "id": "chatcmpl-9NnZ1EaOoC0WaXSBK9RJdEZG3fbMP",
-  "object": "chat.completion",
-  "created": 1715459095,
-  "model": "gpt-3.5-turbo-0125",
-  "choices": [
-      {
-          "index": 0,
-          "message": {
-              "role": "assistant",
-              "content": "1. Question: Who is known as the Queen of Pop?\n   Correct Answer: Madonna\n   Options: [\"Madonna\", \"Beyonce\", \"Taylor Swift\", \"Adele\"]\n\n2. Question: What is the best-selling album of all time?\n   Correct Answer: Thriller\n   Options: [\"Thriller\", \"Dark Side\", \"21\", \"Back in Black\"]\n\n3. Question: Which band performed the song \"Bohemian Rhapsody\"?\n   Correct Answer: Queen\n   Options: [\"Queen\", \"The Beatles\", \"Led Zeppelin\", \"U2\"]\n\n4. Question: What is the highest female voice type?\n   Correct Answer: Soprano\n   Options: [\"Soprano\", \"Alto\", \"Tenor\", \"Baritone\"]\n\n5. Question: What instrument did Jimi Hendrix famously play?\n   Correct Answer: Guitar\n   Options: [\"Guitar\", \"Piano\", \"Drums\", \"Saxophone\"]\n\n6. Question: Who was the lead singer of the band Nirvana?\n   Correct Answer: Kurt Cobain\n   Options: [\"Kurt Cobain\", \"Eddie Vedder\", \"Chris Cornell\", \"Dave Grohl\"]\n\n7. Question: What is the term for a musical piece played before the main performance?\n   Correct Answer: Overture\n   Options: [\"Overture\", \"Encore\", \"Interlude\", \"Refrain\"]\n\n8. Question: What famous pop star is known as the \"Material Girl\"?\n   Correct Answer: Madonna\n   Options: [\"Madonna\", \"Beyonce\", \"Lady Gaga\", \"Katy Perry\"]"
-          },
-          "logprobs": null,
-          "finish_reason": "stop"
-      }
-  ],
-  "usage": {
-      "prompt_tokens": 77,
-      "completion_tokens": 314,
-      "total_tokens": 391
-  },
-  "system_fingerprint": null
+    "id": "chatcmpl-9PFGiFJCp3JiRA0D8ZlUDVQDDfM8W",
+    "object": "chat.completion",
+    "created": 1715803920,
+    "model": "gpt-3.5-turbo-0125",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "[\n    {\n        \"id\": 1,\n        \"topic\": \"food\",\n        \"question_text\": \"What is the main ingredient in guacamole?\",\n        \"correct_answer\": \"avocado\",\n        \"options\": [\"tomato\", \"lettuce\", \"avocado\", \"banana\"]\n    },\n    {\n        \"id\": 2,\n        \"topic\": \"food\",\n        \"question_text\": \"What is the national dish of Japan?\",\n        \"correct_answer\": \"sushi\",\n        \"options\": [\"pasta\", \"curry\", \"sushi\", \"pizza\"]\n    },\n    {\n        \"id\": 3,\n        \"topic\": \"food\",\n        \"question_text\": \"What type of food is a croissant?\",\n        \"correct_answer\": \"pastry\",\n        \"options\": [\"fruit\", \"vegetable\", \"meat\", \"pastry\"]\n    },\n    {\n        \"id\": 4,\n        \"topic\": \"food\",\n        \"question_text\": \"What does a vegetarian avoid eating?\",\n        \"correct_answer\": \"meat\",\n        \"options\": [\"bread\", \"cheese\", \"meat\", \"fish\"]\n    },\n    {\n        \"id\": 5,\n        \"topic\": \"food\",\n        \"question_text\": \"What is the Korean dish made of fermented vegetables?\",\n        \"correct_answer\": \"kimchi\",\n        \"options\": [\"ramen\", \"kimchi\", \"sushi\", \"curry\"]\n    }\n]"
+            },
+            "logprobs": null,
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 91,
+        "completion_tokens": 306,
+        "total_tokens": 397
+    },
+    "system_fingerprint": null
 }
