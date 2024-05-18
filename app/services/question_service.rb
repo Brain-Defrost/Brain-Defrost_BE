@@ -10,7 +10,6 @@ class QuestionService
   end
 
   def self.conn
-    # Faraday.new(url: "http://localhost:5000")
     Faraday.new(url: "https://brain-defrost-be-questions.onrender.com")
   end
 end

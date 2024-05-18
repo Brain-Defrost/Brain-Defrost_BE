@@ -87,9 +87,8 @@ RSpec.describe 'Game API', type: :request do
                               attributes: {
                                 type: :object,
                                 properties: {
-                                  topic: { type: :string },
                                   question_text: { type: :string },
-                                  question_number: { type: :integer },
+                                  question_number: { type: :string },
                                   answer: { type: :string },
                                   options: {
                                     type: :array,
@@ -193,6 +192,23 @@ RSpec.describe 'Game API', type: :request do
           expect(error[:message]).to eq "Validation failed: Topic can't be blank, Number of questions can't be blank, Number of questions is not a number, Time limit can't be blank, Time limit is not a number, Number of players can't be blank, Number of players is not a number"
         end
       end
+
+      response(500, 'Server Error - Cannot create questions') do
+        let(:params) { {
+          topic: "music",
+          number_of_questions: 8,
+          time_limit: 30,
+          number_of_players: 7,
+          display_name: "trivia_genius",
+        } }
+
+        run_test! vcr: true do |example|
+          expect(response).to have_http_status(500)
+
+          error = JSON.parse(response.body, symbolize_names: true)[:error]
+          expect(error[:message]).to eq "Unable to create trivia questions at this time"
+        end
+      end
     end
   end
 
@@ -266,9 +282,8 @@ RSpec.describe 'Game API', type: :request do
                               attributes: {
                                 type: :object,
                                 properties: {
-                                  topic: { type: :string },
                                   question_text: { type: :string },
-                                  question_number: { type: :integer },
+                                  question_number: { type: :string },
                                   answer: { type: :string },
                                   options: {
                                     type: :array,
@@ -391,9 +406,8 @@ RSpec.describe 'Game API', type: :request do
                               attributes: {
                                 type: :object,
                                 properties: {
-                                  topic: { type: :string },
                                   question_text: { type: :string },
-                                  question_number: { type: :integer },
+                                  question_number: { type: :string },
                                   answer: { type: :string },
                                   options: {
                                     type: :array,

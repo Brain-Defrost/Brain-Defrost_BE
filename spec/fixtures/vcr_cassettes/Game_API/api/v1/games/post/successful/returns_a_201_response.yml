@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://brain-defrost-be-questions.onrender.com/api/v1/questions
+    body:
+      encoding: UTF-8
+      string: number_of_questions=8&topic=music
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Sat, 18 May 2024 23:06:46 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '1842'
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 885f7fbb6b708db5-MIA
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Etag:
+      - W/"213bd7422adcb511f939cdccc7bd6dcb"
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Vary:
+      - Accept, Origin, Accept-Encoding
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Rndr-Id:
+      - 999f68ff-2dce-429d
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Render-Origin-Server:
+      - Render
+      X-Request-Id:
+      - 77dee21e-8354-4bcd-b9b7-a170e2c79c54
+      X-Runtime:
+      - '7.546799'
+      X-Xss-Protection:
+      - '0'
+      Server:
+      - cloudflare
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJkYXRhIjpbeyJpZCI6bnVsbCwidHlwZSI6InF1ZXN0aW9uIiwiYXR0cmlidXRlcyI6eyJxdWVzdGlvbl90ZXh0IjoiV2hvIGlzIGtub3duIGFzIHRoZSBLaW5nIG9mIFBvcD8iLCJxdWVzdGlvbl9udW1iZXIiOiIxIiwiYW5zd2VyIjoiTWljaGFlbCBKYWNrc29uIiwib3B0aW9ucyI6WyJNaWNoYWVsIEphY2tzb24iLCJNYWRvbm5hIiwiRWx2aXMgUHJlc2xleSIsIlByaW5jZSJdfX0seyJpZCI6bnVsbCwidHlwZSI6InF1ZXN0aW9uIiwiYXR0cmlidXRlcyI6eyJxdWVzdGlvbl90ZXh0IjoiV2hpY2ggYmFuZCBwZXJmb3JtZWQgYXQgdGhlIGhhbGZ0aW1lIHNob3cgb2YgU3VwZXIgQm93bCA1MD8iLCJxdWVzdGlvbl9udW1iZXIiOiIyIiwiYW5zd2VyIjoiQ29sZHBsYXkiLCJvcHRpb25zIjpbIkJleW9uY8OpIiwiSnVzdGluIFRpbWJlcmxha2UiLCJDb2xkcGxheSIsIkthdHkgUGVycnkiXX19LHsiaWQiOm51bGwsInR5cGUiOiJxdWVzdGlvbiIsImF0dHJpYnV0ZXMiOnsicXVlc3Rpb25fdGV4dCI6IldobyBzYW5nIHRoZSBoaXQgc29uZyAnSGV5IEp1ZGUnPyIsInF1ZXN0aW9uX251bWJlciI6IjMiLCJhbnN3ZXIiOiJUaGUgQmVhdGxlcyIsIm9wdGlvbnMiOlsiVGhlIFJvbGxpbmcgU3RvbmVzIiwiTGVkIFplcHBlbGluIiwiVGhlIEJlYWNoIEJveXMiLCJUaGUgQmVhdGxlcyJdfX0seyJpZCI6bnVsbCwidHlwZSI6InF1ZXN0aW9uIiwiYXR0cmlidXRlcyI6eyJxdWVzdGlvbl90ZXh0IjoiV2hpY2ggc2luZ2VyIGlzIGtub3duIGZvciBoaXRzIGxpa2UgJ0hlbGxvJyBhbmQgJ1NvbWVvbmUgTGlrZSBZb3UnPyIsInF1ZXN0aW9uX251bWJlciI6IjQiLCJhbnN3ZXIiOiJBZGVsZSIsIm9wdGlvbnMiOlsiRWQgU2hlZXJhbiIsIlRheWxvciBTd2lmdCIsIkJleW9uY8OpIiwiQWRlbGUiXX19LHsiaWQiOm51bGwsInR5cGUiOiJxdWVzdGlvbiIsImF0dHJpYnV0ZXMiOnsicXVlc3Rpb25fdGV4dCI6IldobyB3YXMgdGhlIGxlYWQgc2luZ2VyIG9mIHRoZSBiYW5kIE5pcnZhbmE/IiwicXVlc3Rpb25fbnVtYmVyIjoiNSIsImFuc3dlciI6Ikt1cnQgQ29iYWluIiwib3B0aW9ucyI6WyJFZGRpZSBWZWRkZXIiLCJEYXZlIEdyb2hsIiwiQ2hyaXMgQ29ybmVsbCIsIkt1cnQgQ29iYWluIl19fSx7ImlkIjpudWxsLCJ0eXBlIjoicXVlc3Rpb24iLCJhdHRyaWJ1dGVzIjp7InF1ZXN0aW9uX3RleHQiOiJXaGljaCBhcnRpc3QgcmVsZWFzZWQgdGhlIGFsYnVtICdMZW1vbmFkZScgaW4gMjAxNj8iLCJxdWVzdGlvbl9udW1iZXIiOiI2IiwiYW5zd2VyIjoiQmV5b25jw6kiLCJvcHRpb25zIjpbIkFkZWxlIiwiVGF5bG9yIFN3aWZ0IiwiQmV5b25jw6kiLCJSaWhhbm5hIl19fSx7ImlkIjpudWxsLCJ0eXBlIjoicXVlc3Rpb24iLCJhdHRyaWJ1dGVzIjp7InF1ZXN0aW9uX3RleHQiOiJXaGljaCBzb25nIGhvbGRzIHRoZSByZWNvcmQgZm9yIGxvbmdlc3QtcnVubmluZyBudW1iZXIgb25lIG9uIHRoZSBCaWxsYm9hcmQgSG90IDEwMD8iLCJxdWVzdGlvbl9udW1iZXIiOiI3IiwiYW5zd2VyIjoiT2xkIFRvd24gUm9hZCIsIm9wdGlvbnMiOlsiRGVzcGFjaXRvIiwiT25lIFN3ZWV0IERheSIsIk9sZCBUb3duIFJvYWQiLCJVcHRvd24gRnVuayJdfX0seyJpZCI6bnVsbCwidHlwZSI6InF1ZXN0aW9uIiwiYXR0cmlidXRlcyI6eyJxdWVzdGlvbl90ZXh0IjoiV2hhdCBpcyB0aGUgYmVzdC1zZWxsaW5nIGFsYnVtIG9mIGFsbCB0aW1lPyIsInF1ZXN0aW9uX251bWJlciI6IjgiLCJhbnN3ZXIiOiJUaHJpbGxlciIsIm9wdGlvbnMiOlsiQmFjayBpbiBCbGFjayIsIlRoZSBCb2R5Z3VhcmQgU291bmR0cmFjayIsIlRocmlsbGVyIiwiRGFyayBTaWRlIG9mIHRoZSBNb29uIl19fV19
+  recorded_at: Sat, 18 May 2024 23:06:46 GMT
+recorded_with: VCR 6.2.0
