@@ -18,7 +18,8 @@ class Question
   end
 
   def complete_options(data)
-    data["options"] << data["correct_answer"] if data["options"].length < 4
+    data["options"] << data["correct_answer"] unless data["options"].include?(data["correct_answer"])
+    
     data["options"]
   end
 end
