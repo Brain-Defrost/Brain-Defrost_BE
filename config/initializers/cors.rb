@@ -7,10 +7,10 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "http://localhost:3000", "https://brain-defrost.github.io/Brain-Defrost_FE/"
+    origins "http://localhost:3000", "http://127.0.0.1:3000", "https://brain-defrost.github.io", "https://brain-defrost.github.io/Brain-Defrost_FE/"
 
     resource "*",
       headers: :any,
-      methods: [:get, :post, :patch, :delete]
+      methods: [:get, :post, :patch, :delete, :options, :head]
   end
 end
