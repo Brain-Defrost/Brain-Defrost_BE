@@ -1,0 +1,11 @@
+:concurrency: 5
+:queues:
+  - default
+  - mailers
+  - critical
+:scheduler:
+  :schedule:
+    delete_old_games:
+      ceon: "0 * * * *" #this tells to run every hour
+      class: "DeleteOldGamesJob"
+      queue: default

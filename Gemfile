@@ -44,6 +44,10 @@ gem "jsonapi-serializer"
 gem "rswag-api"
 gem "rswag-ui"
 
+# For background job delete
+gem 'sidekiq'
+gem 'sidekiq-scheduler'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
