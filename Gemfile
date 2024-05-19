@@ -36,7 +36,6 @@ gem "bootsnap", require: false
 gem "rack-cors"
 
 # API Gems
-gem "openai"
 gem "faraday"
 gem "jsonapi-serializer"
 

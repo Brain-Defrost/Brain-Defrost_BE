@@ -83,12 +83,10 @@ paths:
                                     attributes:
                                       type: object
                                       properties:
-                                        topic:
-                                          type: string
                                         question_text:
                                           type: string
                                         question_number:
-                                          type: integer
+                                          type: string
                                         answer:
                                           type: string
                                         options:
@@ -97,6 +95,8 @@ paths:
                                             type: string
         '400':
           description: Invalid or missing data
+        '500':
+          description: Server Error - Cannot create questions
       requestBody:
         content:
           application/json:
@@ -202,12 +202,10 @@ paths:
                                     attributes:
                                       type: object
                                       properties:
-                                        topic:
-                                          type: string
                                         question_text:
                                           type: string
                                         question_number:
-                                          type: integer
+                                          type: string
                                         answer:
                                           type: string
                                         options:
@@ -292,12 +290,10 @@ paths:
                                     attributes:
                                       type: object
                                       properties:
-                                        topic:
-                                          type: string
                                         question_text:
                                           type: string
                                         question_number:
-                                          type: integer
+                                          type: string
                                         answer:
                                           type: string
                                         options:

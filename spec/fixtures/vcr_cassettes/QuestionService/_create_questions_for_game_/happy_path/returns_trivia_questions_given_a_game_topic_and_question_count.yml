@@ -1,0 +1,80 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://brain-defrost-be-questions.onrender.com/api/v1/questions
+    body:
+      encoding: UTF-8
+      string: number_of_questions=5&topic=service+oriented+architecture
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 18 May 2024 22:35:16 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '1238'
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 885f519978a2b3cd-MIA
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Etag:
+      - W/"831c6de360b56489e972d94ea383add4"
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Vary:
+      - Accept, Origin, Accept-Encoding
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Rndr-Id:
+      - a6855e2f-c684-47aa
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Render-Origin-Server:
+      - Render
+      X-Request-Id:
+      - bb20bd5d-8a80-4fef-99dd-fa2487df04ed
+      X-Runtime:
+      - '7.078809'
+      X-Xss-Protection:
+      - '0'
+      Server:
+      - cloudflare
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":[{"id":null,"type":"question","attributes":{"question_text":"What
+        does SOA stand for?","question_number":"1","answer":"Service Oriented Architecture","options":["System
+        Optimization Approach","Service Oriented Architecture","Service Oriented Approach","Software
+        Operations Analysis"]}},{"id":null,"type":"question","attributes":{"question_text":"Which
+        design principle is fundamental to SOA?","question_number":"2","answer":"Loose
+        coupling","options":["Tight integration","Strong cohesion","Functional decomposition","Loose
+        coupling"]}},{"id":null,"type":"question","attributes":{"question_text":"What
+        is a key advantage of SOA?","question_number":"3","answer":"Interoperability","options":["Interoperability","Vendor
+        lock-in","Single point of failure","Monolithic architecture"]}},{"id":null,"type":"question","attributes":{"question_text":"Which
+        protocol is commonly used in SOA for communication?","question_number":"4","answer":"SOAP","options":["SOAP","TCP","HTTP","REST"]}},{"id":null,"type":"question","attributes":{"question_text":"What
+        is a service contract in SOA?","question_number":"5","answer":"Defines interactions","options":["Specifies
+        data","Defines interactions","Describes architecture","Sets data formats"]}}]}'
+  recorded_at: Sat, 18 May 2024 22:35:16 GMT
+recorded_with: VCR 6.2.0

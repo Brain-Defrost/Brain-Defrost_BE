@@ -3,8 +3,12 @@ class Api::V1::GamesController < ApplicationController
     game = Game.new(new_game_params)
     if game.save!
       game.players.create!(display_name: params[:display_name])
-      questions = QuestionServiceFacade.get_questions(game)
-      render json: GameSerializer.format(game, questions), status: :created
+      questions = QuestionFacade.create_questions_for(game)
+      if questions.include?(:error)
+        render json: questions, status: :internal_server_error
+      else
+        render json: GameSerializer.format(game, questions), status: :created
+      end
     end
   end
 

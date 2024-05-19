@@ -1,10 +1,4 @@
 class GameSerializer
-  # include JSONAPI::Serializer
-  # attributes :link, :started, :number_of_questions, :number_of_players, :topic, :time_limit
-
-  # has_many :players
-  # has_many :questions
-
   def self.format(game, questions = [])
     {
       data: {
@@ -38,7 +32,6 @@ class GameSerializer
                 id: nil,
                 type: "question",
                 attributes: {
-                  topic: question.topic, 
                   question_text: question.question_text,
                   question_number: question.question_number,
                   answer: question.answer,
