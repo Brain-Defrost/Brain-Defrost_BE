@@ -9,7 +9,6 @@
 - [Schema](#schema)
 - [Instructions](#instructions)
   - [Basic Setup](#basic-setup)
-  - [External API Setup](#external-api-setup)
   - [Running a Local Server](#running-a-local-server)
   - [Testing](#testing)
 - [Endpoints](#endpoints)
@@ -46,7 +45,7 @@ This project was completed for Turing's Capstone Project for Mod 4. [Part 1](htt
 4. Run `bundle install` to install gems used for this project
 5. Setup the database by running `rails db:{drop,create,migrate}`
 
-### Local Server
+### Runnin a Local Server
 
 This app uses `http://localhost:3000`.
 
@@ -97,7 +96,7 @@ bundle exec rspec <path/to/test/file>:test_line
 
 ## Endpoints
 
-API documentation may be accessed [here](https://brain-defrost-be-questions.onrender.com/api-docs/index.html). Documentation was setup using the [rswag gem](https://github.com/rswag/rswag?tab=readme-ov-file) and [SwaggerUI](https://swagger.io/tools/swagger-ui/). 
+API documentation may be accessed [here](https://brain-defrost-f8afea5ead0a.herokuapp.com/api-docs/index.html). Documentation was setup using the [rswag gem](https://github.com/rswag/rswag?tab=readme-ov-file) and [SwaggerUI](https://swagger.io/tools/swagger-ui/). 
 
 To access the API documentation on the local server. [Start](#local-server) the server and navigate to `http://localhost:3000/api-docs/index.html` in a browser.
 
