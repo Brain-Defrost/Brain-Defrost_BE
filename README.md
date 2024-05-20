@@ -45,7 +45,7 @@ This project was completed for Turing's Capstone Project for Mod 4. [Part 1](htt
 4. Run `bundle install` to install gems used for this project
 5. Setup the database by running `rails db:{drop,create,migrate}`
 
-### Runnin a Local Server
+### Running a Local Server
 
 This app uses `http://localhost:3000`.
 
