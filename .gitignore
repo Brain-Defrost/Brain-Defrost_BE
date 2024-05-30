@@ -38,3 +38,6 @@ coverage
 # Ignore the unwanted DS store files
 .DS_Store
 **/.DS_Store
+
+# Ignore this Redis file
+dump.rdb
