@@ -1,7 +1,7 @@
 class StatSenderJob
   include Sidekiq::Job
 
-  def perform(*args)
-    # Do something
+  def perform(email, stat)
+    UserNotifierMailer.send_stat_email(email, stat).deliver_now
   end
 end
