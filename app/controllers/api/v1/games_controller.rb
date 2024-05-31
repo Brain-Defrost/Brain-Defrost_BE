@@ -7,6 +7,7 @@ class Api::V1::GamesController < ApplicationController
       if questions.include?(:error)
         render json: questions, status: :internal_server_error
       else
+        Rails.cache.write(game.id, questions, expires_in: 1.hour)
         render json: GameSerializer.format(game, questions), status: :created
       end
     end
@@ -14,16 +15,20 @@ class Api::V1::GamesController < ApplicationController
 
   def show
     game = Game.find(params[:id])
-    render json: GameSerializer.format(game)
+    questions = Rails.cache.read(game.id)
+    questions ||= []
+    render json: GameSerializer.format(game, questions)
   end
 
   def update
     game = Game.find(params[:id])
     game.update!(game_params)
-    render json: GameSerializer.format(game)
+    questions = Rails.cache.read(game.id)
+    questions ||= []
+    render json: GameSerializer.format(game, questions)
   end
 
-  private
+  private 
   def new_game_params
     params.permit(:topic, :number_of_questions, :number_of_players, :time_limit)
   end
