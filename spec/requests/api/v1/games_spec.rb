@@ -66,7 +66,11 @@ RSpec.describe 'Game API', type: :request do
                                 properties: {
                                   display_name: { type: :string },
                                   answers_correct: { type: :integer },
-                                  answers_incorrect: { type: :integer }
+                                  answers_incorrect: { type: :integer },
+                                  questions_correct: { 
+                                    type: :array,
+                                    items: { type: :string } 
+                                  }
                                 }
                               }
                             }
@@ -261,7 +265,11 @@ RSpec.describe 'Game API', type: :request do
                                 properties: {
                                   display_name: { type: :string },
                                   answers_correct: { type: :integer },
-                                  answers_incorrect: { type: :integer }
+                                  answers_incorrect: { type: :integer },
+                                  questions_correct: { 
+                                    type: :array,
+                                    items: { type: :string } 
+                                  }
                                 }
                               }
                             }
@@ -385,7 +393,11 @@ RSpec.describe 'Game API', type: :request do
                                 properties: {
                                   display_name: { type: :string },
                                   answers_correct: { type: :integer },
-                                  answers_incorrect: { type: :integer }
+                                  answers_incorrect: { type: :integer },
+                                  questions_correct: { 
+                                    type: :array,
+                                    items: { type: :string } 
+                                  }
                                 }
                               }
                             }
