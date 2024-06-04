@@ -10,5 +10,10 @@ RSpec.describe UserMailer, type: :mailer do
       expect(mail.from).to eq(['me@example.com'])
     end
 
+    it 'renders the body' do
+      expect(mail.body.encoded).to match(read_fixture('invite').join)
+    end
+
+    
   end
 end
