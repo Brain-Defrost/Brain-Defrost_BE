@@ -17,4 +17,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  post 'invite', to: 'users#invite'
 end
