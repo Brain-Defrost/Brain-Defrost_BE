@@ -5,7 +5,11 @@ class UserMailerTest < ActionMailer::TestCase
     email = UserMailer.create_invite("me@example.com",
                                      "friend@example.com", Time.now)
 
+    assert_emails 1 do
+      email.deliver_now
+    end
+
+    
   
-   
   end
 end
