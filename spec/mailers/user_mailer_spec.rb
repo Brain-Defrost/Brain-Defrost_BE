@@ -14,6 +14,8 @@ RSpec.describe UserMailer, type: :mailer do
       expect(mail.body.encoded).to match(read_fixture('invite').join)
     end
 
-    
+    it 'queues the email' do
+      expect { mail.deliver_now }.to change { ActionMailer::Base.deliveries.count }.by(1)
+    end
   end
 end
