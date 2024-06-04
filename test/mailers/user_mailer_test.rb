@@ -10,6 +10,7 @@ class UserMailerTest < ActionMailer::TestCase
     end
 
     
-  
+    assert_equal ["me@example.com"], email.from
+    
   end
 end
