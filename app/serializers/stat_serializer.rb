@@ -33,7 +33,8 @@ class StatSerializer
                 attributes: {
                   display_name: player.display_name,
                   answers_correct: player.answers_correct,
-                  answers_incorrect: player.answers_incorrect
+                  answers_incorrect: player.answers_incorrect,
+                  questions_correct: player.questions_correct
                 }
               }
             end
