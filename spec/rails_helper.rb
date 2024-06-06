@@ -69,6 +69,10 @@ RSpec.configure do |config|
 
   # use factory bot
   config.include FactoryBot::Syntax::Methods
+
+  config.before(:each) do
+    Sidekiq::Testing.inline!
+  end
 end
 
 Shoulda::Matchers.configure do |config|
