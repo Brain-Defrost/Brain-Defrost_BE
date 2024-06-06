@@ -13,7 +13,7 @@ class QuestionService
 
   def self.conn
     Faraday.new(url: "https://brain-defrost-be-questions.onrender.com") do |faraday|
-      faraday.request :retry, max: 1, interval: 2, exceptions: [Faraday::TimeoutError]
+      faraday.request :retry, max: 2, interval: 2, exceptions: [Faraday::TimeoutError]
     end
   end
 end
