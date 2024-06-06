@@ -14,9 +14,8 @@ Rails.application.routes.draw do
       resources :games, except: [:index, :destroy] do
         resources :players
         get "/stats", to: "stats#show"
+        post "/stats/:email", to: "stats#send_stat_email"
       end
     end
   end
-
-  post 'invite', to: 'users#invite'
 end
