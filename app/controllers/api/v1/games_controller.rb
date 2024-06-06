@@ -8,6 +8,10 @@ class Api::V1::GamesController < ApplicationController
         render json: questions, status: :internal_server_error
       else
         Rails.cache.write(game.id, questions, expires_in: 1.hour)
+
+        # broadcast game status and players
+        # GameChannel.broadcast_to(game, GameSerializer.format(game, questions))
+        # head :created
         render json: GameSerializer.format(game, questions), status: :created
       end
     end

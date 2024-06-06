@@ -25,4 +25,14 @@ RSpec.describe GameChannel, type: :channel do
     unsubscribe
     expect(subscription).to_not have_stream_for(game)
   end
+
+  it "broadcasts game" do
+    game = create(:game)
+    create_list(:player, 2, game_id: game.id)
+    subscribe game_id: game.id
+
+    data = GameSerializer.format(game)
+
+    expect{ GameChannel.broadcast_to(game, data) }.to have_broadcasted_to(game).with(data)
+  end
 end
