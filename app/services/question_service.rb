@@ -5,7 +5,12 @@ class QuestionService
   end
 
   def self.post_url(url, params)
-    response = conn.post(url, params)
+    response = conn.post(url, params) do |req|
+      req.retry(max: 1, interval: 2) { |exception|
+      exception.is_a?(Faraday::TimeoutError)
+    }
+    end
+
     @parsed_json = JSON.parse(response.body, symbolize_names: true)
   end
 
