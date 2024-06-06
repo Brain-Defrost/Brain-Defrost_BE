@@ -11,7 +11,9 @@ RSpec.describe 'Stats API', type: :request do
 
       response(200, 'successful') do
         let(:game_id) { create(:game, number_of_questions: 2).id }
-        before { 2.times do create(:player, answers_correct: 1, game_id: game_id) end }
+        let(:id) { create(:player, answers_correct: 2, game_id: game_id) }
+        before { create(:player, answers_correct: 0, game_id: game_id) }
+        before { create(:player, answers_correct: 1, game_id: game_id) }
 
         schema({
           type: :object,
@@ -119,6 +121,54 @@ RSpec.describe 'Stats API', type: :request do
 
       response(404, 'Game ID not found') do
         let(:game_id) { -1 }
+
+        run_test! do |example|
+          expect(response.status).to eq 404
+
+          error = JSON.parse(response.body, symbolize_names: true)[:error]
+          expect(error[:message]).to eq "Couldn't find Game with 'id'=-1"
+        end
+      end
+    end
+  end
+
+  path '/api/v1/games/{game_id}/stats/{email}' do
+    parameter name: :game_id, in: :path, type: :string, description: 'Game ID'
+    parameter name: :email, in: :path, type: :string, description: 'Player Email'
+
+    post("Send game's stats via Email") do
+      tags 'Stats'
+      produces 'application/json'
+
+      response(200, 'successful') do
+        let(:game_id) { create(:game, number_of_questions: 2).id }
+        let(:email) { 'example@mail.com' }
+        before { 2.times { create(:player, answers_correct: 1, game_id: game_id) } }
+
+        schema({
+          type: :object,
+          properties: {
+            message: { type: :string }
+          }
+        })
+
+        run_test! do |example|
+          expect(response).to have_http_status(200)
+          parsed_data = JSON.parse(response.body, symbolize_names: true)
+          expect(parsed_data).to be_a(Hash)
+          expect(parsed_data[:message]).to eq "Stats sent successfully"
+
+          expect {
+            post '/api/v1/games/1/stats/example@mail.com'
+          }.to change { Sidekiq::Queue.new('mailers').size }.by(1)
+        end
+      end
+
+      response(404, 'invalid game id') do
+        let(:game_id) { -1 }
+        let(:email) { 'example@mail.com' }
+        let (:game_1) { create(:game, number_of_questions: 2) }
+        before { create(:player, game_id: game_1.id) }
 
         run_test! do |example|
           expect(response.status).to eq 404
