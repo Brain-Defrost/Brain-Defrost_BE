@@ -14,4 +14,9 @@ class GameChannel < ApplicationCable::Channel
   def unsubscribed
     stop_all_streams
   end
+
+  def start_game
+    game = Game.find(params[:game_id])
+    GameChannel.broadcast_to(game, { game_started: game.started }) if game.started?
+  end
 end
