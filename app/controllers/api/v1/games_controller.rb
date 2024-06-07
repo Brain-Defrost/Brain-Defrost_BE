@@ -27,8 +27,8 @@ class Api::V1::GamesController < ApplicationController
     game.update!(game_params)
     questions = Rails.cache.read(game.id)
     questions ||= []
-    broadcast_players_and_status_for(game)
     render json: GameSerializer.format(game, questions)
+    broadcast_players_and_status_for(game)
   end
 
   private 
