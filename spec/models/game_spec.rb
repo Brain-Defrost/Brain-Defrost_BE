@@ -35,7 +35,7 @@ RSpec.describe Game, type: :model do
       it "generates a valid link with correct format" do
         game = Game.create!({number_of_questions: 8, number_of_players: 7, topic: "music", time_limit: 30})
   
-        expect(game.link).to match("https://brain-defrost.github.io/Brain-Defrost_FE/join/#{game.id}")
+        expect(game.link).to match("https://brain-defrost.netlify.app/join/#{game.id}")
       end
   end
 end

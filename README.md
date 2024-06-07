@@ -1,4 +1,4 @@
-# <center>BrainFood</center>
+# <center>Brain Defrost</center>
 
 ## Table of Contents
 
@@ -15,21 +15,21 @@
 - [Contributors](#contributors)
 
 ## Summary
-This API-only Rails app manages game, player, and stat data for Brain Defrost. Trivia questions for a game are received from an external API via a POST request to this [repository](https://github.com/Brain-Defrost/Brain-Defrost_BE-Questions). The questions are processed as plain old ruby objects (POROs) before being attached to a trivia game and sent to the frontend.
+This API-only Rails app manages game, player, and stat data for Brain Defrost. Trivia questions for a game are received from an external API via a POST request to this [repository](https://github.com/Brain-Defrost/Brain-Defrost_BE-Questions). The questions are processed as plain old ruby objects (POROs), stored with Redis caching before being attached to a trivia game and sent to the frontend, and available through all game endpoints. Multiplayer funcionality was implemented using ActionCable for WebSockets.
 
 ### Game Overview
 Brain Defrost is a web application designed to help people become more connected and engaged virtually via a trivia game. Generative AI is used to create custom trivia questions based on the topic and desired question count provided.
 
-To play, a user inputs a topic, number of questions, number of players, a time limit to answer questions, and what they'd like their display name to be. The user is then taken to the game's lobby and provided with a shareable link other players may use to join. Once everyone joins, players may start the game and enjoy answering trivia questions. The correct answer and a list of players who answered correctly is displayed after each question.
+To play, a user inputs a topic, number of questions, number of players, a time limit to answer questions, and what they'd like their display name to be. The user is then taken to the game's lobby and provided with a shareable link other players may use to join. Once everyone joins, players may start the game and enjoy answering trivia questions. The correct answer and a list of players who answered correctly is displayed after each question. At the end, players may request the game's final stats via email.
 
 ### Project Background
 
-This project was completed for Turing's Capstone Project for Mod 4. [Part 1](https://mod4.turing.edu/projects/capstone/) of the project pertained planning and completing our app's minimum viable product (MVP). [Part 2](https://mod4.turing.edu/projects/capstone_expansion/) will focus on adding additional features.
+This project was completed for Turing's Capstone Project for Mod 4. [Part 1](https://mod4.turing.edu/projects/capstone/) of the project pertained planning and completing our app's minimum viable product (MVP). [Part 2](https://mod4.turing.edu/projects/capstone_expansion/) focused on adding additional features: caching a game's questions with Redis, implementing multiplayer with WebSockets, and allowing users to receive an email of the game results using Sidekiq for the background job.
 
 ### Project Links
 |Repo|Deployment|Description|
 |:--:|:--:|:--:|
-|[FE Repo](https://github.com/Brain-Defrost/Brain-Defrost_FE)|[FE Github.io](https://brain-defrost.github.io/Brain-Defrost_FE/)| Play a game of trivia|
+|[FE Repo](https://github.com/Brain-Defrost/Brain-Defrost_FE)|[FE Netlify](https://brain-defrost.netlify.app/)| Play a game of trivia|
 |[BE Repo 1](https://github.com/Brain-Defrost/Brain-Defrost_BE)  (you're here) | [BE Heroku](https://brain-defrost-f8afea5ead0a.herokuapp.com/)| Game, player, stats API|
 |[BE Repo 2](https://github.com/Brain-Defrost/Brain-Defrost_BE-Questions)|[BE Render](https://brain-defrost-be-questions.onrender.com/)|Questions API|
 
@@ -52,7 +52,6 @@ This app uses `http://localhost:3000`.
 To start the local server run `rails server` in the terminal while in the app's base directory (Brain-Defrost_BE-Questions folder).
 
 To stop the local rails server use `Ctrl` + `C` in the open terminal.
-
 
 ### Testing
 [Rspec](https://rspec.info/documentation/) was used for testing. This project currently uses rspec-rails v6.1 and rspec-core v3.13.

@@ -9,6 +9,6 @@ class Game < ApplicationRecord
   validates :started, inclusion: [true, false]
 
   after_save do
-    self.link = "https://brain-defrost.github.io/Brain-Defrost_FE/join/#{self.id}"
+    self.link = "https://brain-defrost.netlify.app/join/#{self.id}"
   end
 end
