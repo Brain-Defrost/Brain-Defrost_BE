@@ -15,16 +15,16 @@
 - [Contributors](#contributors)
 
 ## Summary
-This API-only Rails app manages game, player, and stat data for Brain Defrost. Trivia questions for a game are received from an external API via a POST request to this [repository](https://github.com/Brain-Defrost/Brain-Defrost_BE-Questions). The questions are processed as plain old ruby objects (POROs) before being attached to a trivia game and sent to the frontend.
+This API-only Rails app manages game, player, and stat data for Brain Defrost. Trivia questions for a game are received from an external API via a POST request to this [repository](https://github.com/Brain-Defrost/Brain-Defrost_BE-Questions). The questions are processed as plain old ruby objects (POROs), stored with Redis caching before being attached to a trivia game and sent to the frontend, and available through all game endpoints.
 
 ### Game Overview
 Brain Defrost is a web application designed to help people become more connected and engaged virtually via a trivia game. Generative AI is used to create custom trivia questions based on the topic and desired question count provided.
 
-To play, a user inputs a topic, number of questions, number of players, a time limit to answer questions, and what they'd like their display name to be. The user is then taken to the game's lobby and provided with a shareable link other players may use to join. Once everyone joins, players may start the game and enjoy answering trivia questions. The correct answer and a list of players who answered correctly is displayed after each question.
+To play, a user inputs a topic, number of questions, number of players, a time limit to answer questions, and what they'd like their display name to be. The user is then taken to the game's lobby and provided with a shareable link other players may use to join. Once everyone joins, players may start the game and enjoy answering trivia questions. The correct answer and a list of players who answered correctly is displayed after each question. And at the end of the game, players can request the game stats to arrive as email when given an email address"
 
 ### Project Background
 
-This project was completed for Turing's Capstone Project for Mod 4. [Part 1](https://mod4.turing.edu/projects/capstone/) of the project pertained planning and completing our app's minimum viable product (MVP). [Part 2](https://mod4.turing.edu/projects/capstone_expansion/) will focus on adding additional features.
+This project was completed for Turing's Capstone Project for Mod 4. [Part 1](https://mod4.turing.edu/projects/capstone/) of the project pertained planning and completing our app's minimum viable product (MVP). [Part 2](https://mod4.turing.edu/projects/capstone_expansion/) focused on adding additional features: caching, implementing WebSockets and background email send job.
 
 ### Project Links
 |Repo|Deployment|Description|
