@@ -38,7 +38,8 @@ RSpec.describe "ActionCable Broadcasts", type: :request do
       create_list(:player, 2, game_id: game.id)
       players = game.players.as_json(except: [:created_at, :updated_at])
 
-      patch "/api/v1/games/#{game.id}", params: { started: true}
+      patch "/api/v1/games/#{game.id}", params: { started: true }
+      game.update!(started: true)
 
       expect {
         ActionCable.server.broadcast("game_channel_#{game.id}", { player_list: players, game_started: game.started })
@@ -79,7 +80,7 @@ RSpec.describe "ActionCable Broadcasts", type: :request do
       player = create(:player, game_id: game.id)
       players = game.players.as_json(except: [:created_at, :updated_at])
 
-      patch "/api/v1/games/#{game.id}", params: { started: true}
+      patch "/api/v1/games/#{game.id}", params: { question: 1, correct: true }
 
       expect {
         ActionCable.server.broadcast("game_channel_#{game.id}", { player_list: players })
