@@ -66,6 +66,10 @@ paths:
                                           type: integer
                                         answers_incorrect:
                                           type: integer
+                                        questions_correct:
+                                          type: array
+                                          items:
+                                            type: string
                           questions:
                             type: object
                             properties:
@@ -185,6 +189,10 @@ paths:
                                           type: integer
                                         answers_incorrect:
                                           type: integer
+                                        questions_correct:
+                                          type: array
+                                          items:
+                                            type: string
                           questions:
                             type: object
                             properties:
@@ -273,6 +281,10 @@ paths:
                                           type: integer
                                         answers_incorrect:
                                           type: integer
+                                        questions_correct:
+                                          type: array
+                                          items:
+                                            type: string
                           questions:
                             type: object
                             properties:
@@ -614,8 +626,48 @@ paths:
                                           type: integer
                                         answers_incorrect:
                                           type: integer
+                                        questions_correct:
+                                          type: array
+                                          items:
+                                            type: string
         '404':
           description: Game ID not found
+  "/api/v1/games/{game_id}/stats/email":
+    parameters:
+    - name: game_id
+      in: path
+      description: Game ID
+      required: true
+      schema:
+        type: string
+    post:
+      summary: Send game's stats via Email
+      tags:
+      - Stats
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Stat's game not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  required: true
+                  description: Player Email
+        required: true
 servers:
 - url: https://brain-defrost-f8afea5ead0a.herokuapp.com
 - url: http://localhost:3000

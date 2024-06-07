@@ -1,5 +1,6 @@
 class Game < ApplicationRecord
   has_many :players, dependent: :destroy
+  has_one :stat, dependent: :destroy
 
   validates :topic, presence: true, length: { maximum: 50 }
   validates :number_of_questions, presence: true, numericality: { in: 1..10 }

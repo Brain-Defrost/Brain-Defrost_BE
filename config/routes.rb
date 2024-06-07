@@ -15,7 +15,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :games, except: [:index, :destroy] do
         resources :players
-        get "/stats", to: "stats#show"
+        resource :stats, only: [:show] do
+          post "/email", to: "stats#send_stat_email"
+        end
       end
     end
   end

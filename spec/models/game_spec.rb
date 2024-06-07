@@ -21,6 +21,7 @@ RSpec.describe Game, type: :model do
 
   describe "associations" do
     it { should have_many(:players).dependent(:destroy) }
+    it { should have_one(:stat).dependent(:destroy) }
   end
   
   describe "after_save block" do

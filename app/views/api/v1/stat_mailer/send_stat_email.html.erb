@@ -1,0 +1,10 @@
+<h1>Your Brain Freeze Statistics Report</h1>
+
+<p>The group average correct answers: <%= @stat.avg_correct_answers %></p>
+<p>Topic: <%= @stat.game.topic %></p>
+<p>Number of questions: <%= @stat.game.number_of_questions %></p>
+
+<% @stat.game.players.each do |player| %>
+  <p>Player Name: <%= player.display_name %></p>
+  <p>Player correct answers: <%= player.answers_correct %></p>
+<% end %>
