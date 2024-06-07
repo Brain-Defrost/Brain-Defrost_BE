@@ -15,7 +15,7 @@
 - [Contributors](#contributors)
 
 ## Summary
-This API-only Rails app manages game, player, and stat data for Brain Defrost. Trivia questions for a game are received from an external API via a POST request to this [repository](https://github.com/Brain-Defrost/Brain-Defrost_BE-Questions). The questions are processed as plain old ruby objects (POROs), stored with Redis caching before being attached to a trivia game and sent to the frontend, and available through all game endpoints.
+This API-only Rails app manages game, player, and stat data for Brain Defrost. Trivia questions for a game are received from an external API via a POST request to this [repository](https://github.com/Brain-Defrost/Brain-Defrost_BE-Questions). The questions are processed as plain old ruby objects (POROs), stored with Redis caching before being attached to a trivia game and sent to the frontend, and available through all game endpoints. Multiplayer funcionality was implemented using ActionCable for WebSockets.
 
 ### Game Overview
 Brain Defrost is a web application designed to help people become more connected and engaged virtually via a trivia game. Generative AI is used to create custom trivia questions based on the topic and desired question count provided.
@@ -24,12 +24,12 @@ To play, a user inputs a topic, number of questions, number of players, a time l
 
 ### Project Background
 
-This project was completed for Turing's Capstone Project for Mod 4. [Part 1](https://mod4.turing.edu/projects/capstone/) of the project pertained planning and completing our app's minimum viable product (MVP). [Part 2](https://mod4.turing.edu/projects/capstone_expansion/) focused on adding additional features: caching, implementing WebSockets and background email send job.
+This project was completed for Turing's Capstone Project for Mod 4. [Part 1](https://mod4.turing.edu/projects/capstone/) of the project pertained planning and completing our app's minimum viable product (MVP). [Part 2](https://mod4.turing.edu/projects/capstone_expansion/) focused on adding additional features: caching a game's questions with Redis, implementing multiplayer with WebSockets, and allowing users to receive an email of the game results using Sidekiq for the background job.
 
 ### Project Links
 |Repo|Deployment|Description|
 |:--:|:--:|:--:|
-|[FE Repo](https://github.com/Brain-Defrost/Brain-Defrost_FE)|[FE Github.io](https://brain-defrost.github.io/Brain-Defrost_FE/)| Play a game of trivia|
+|[FE Repo](https://github.com/Brain-Defrost/Brain-Defrost_FE)|[FE Netlify](https://brain-defrost.netlify.app/)| Play a game of trivia|
 |[BE Repo 1](https://github.com/Brain-Defrost/Brain-Defrost_BE)  (you're here) | [BE Heroku](https://brain-defrost-f8afea5ead0a.herokuapp.com/)| Game, player, stats API|
 |[BE Repo 2](https://github.com/Brain-Defrost/Brain-Defrost_BE-Questions)|[BE Render](https://brain-defrost-be-questions.onrender.com/)|Questions API|
 
