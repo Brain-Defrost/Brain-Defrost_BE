@@ -1,5 +1,3 @@
-require 'faraday/retry'
-
 class QuestionService
   def self.create_questions_for(game)
     post_url("/api/v1/questions", game)
@@ -7,13 +5,11 @@ class QuestionService
   end
 
   def self.post_url(url, params)
-    response = conn.post(url, JSON.generate(params))
+    response = conn.post(url, params)
     @parsed_json = JSON.parse(response.body, symbolize_names: true)
   end
 
   def self.conn
-    Faraday.new(url: "https://brain-defrost-be-questions.onrender.com") do |faraday|
-      faraday.request :retry, max: 2, interval: 2, exceptions: [Faraday::TimeoutError]
-    end
+    Faraday.new(url: "https://brain-defrost-be-questions.onrender.com")
   end
 end
