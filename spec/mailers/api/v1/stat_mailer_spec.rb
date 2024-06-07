@@ -19,9 +19,9 @@ RSpec.describe Api::V1::StatMailer, type: :mailer do
       expect(mail.body.encoded).to include("Topic: #{game.topic}")
       expect(mail.body.encoded).to include("Number of questions: #{game.number_of_questions}")
       expect(mail.body.encoded).to include("Player Name: Alice")
-      expect(mail.body.encoded).to include("Player average correct answers: 2")
+      expect(mail.body.encoded).to include("Player correct answers: 2")
       expect(mail.body.encoded).to include("Player Name: Bob")
-      expect(mail.body.encoded).to include("Player average correct answers: 3")
+      expect(mail.body.encoded).to include("Player correct answers: 3")
     end
 
     it 'queues the email' do
