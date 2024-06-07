@@ -14,7 +14,7 @@ class Api::V1::StatsController < ApplicationController
     if recipient_email.blank?
       render json: { error: 'Email is required' }, status: :unprocessable_entity
     else
-      StatSenderJob.perform_async(recipient_email, @stat.id)
+      StatSenderJob.perform_async(recipient_email, @stat.to_json)
         
       render json: { message: 'Stats sent successfully'}, status: :ok
     end
