@@ -152,7 +152,7 @@ RSpec.describe 'Players API', type: :request do
       end
 
       response(422, 'Display name taken') do
-        let(:game_id) { create(:game).id }
+        let(:game_id) { create(:game, number_of_players: 2).id }
         before { create(:player, display_name: 'trivia-ninja', game_id: game_id) }
         let(:params) { {display_name: 'trivia-ninja'} }
 
