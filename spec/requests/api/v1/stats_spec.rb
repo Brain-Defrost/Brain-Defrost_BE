@@ -130,19 +130,26 @@ RSpec.describe 'Stats API', type: :request do
     end
   end
 
-  path '/api/v1/games/{game_id}/stats/{email}' do
+  path '/api/v1/games/{game_id}/stats/email' do
     parameter name: :game_id, in: :path, type: :string, description: 'Game ID'
-    parameter name: :email, in: :path, type: :string, description: 'Player Email'
-
+    
+    
     post("Send game's stats via Email") do
       tags 'Stats'
       consumes 'application/json'
       produces 'application/json'
+      parameter name: :params, in: :body, required: true, schema: {
+          type: :object,
+          properties: {
+            email: { type: :string, required: true, description: 'Player Email' },
+          }
+        }
 
       response(200, 'successful') do
         let(:game) { create(:game, number_of_questions: 2) }
         let(:game_id) { game.id }
         let(:email) { 'example@mail.com' }
+        let(:params) { {email: email} }
         before { 2.times { create(:player, answers_correct: 1, game_id: game_id) } }
 
         schema({
@@ -159,7 +166,7 @@ RSpec.describe 'Stats API', type: :request do
           expect(parsed_data[:message]).to eq "Stats sent successfully"
 
           expect {
-            post "/api/v1/games/#{game_id}/stats/#{email}"
+            post "/api/v1/games/#{game_id}/stats/email", params: { email: email }
           }.to change { Sidekiq::Queues['default'].size }.by(1)
         end
       end
@@ -167,6 +174,7 @@ RSpec.describe 'Stats API', type: :request do
       response(404, "Stat's game not found") do
         let(:game_id) { -1 }
         let(:email) { 'example@mail.com' }
+        let(:params) { {email: email} }
 
         run_test! do |example|
           expect(response).to have_http_status(404)
