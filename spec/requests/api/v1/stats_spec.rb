@@ -140,7 +140,7 @@ RSpec.describe 'Stats API', type: :request do
         properties: { email: { type: :string, required: true } }
       }
 
-      response(201, 'successfully created and sent') do
+      response(200, 'successfully created and sent') do
         let(:game_id) { create(:game, number_of_questions: 2).id }
         let(:params) { { email: 'example@mail.com'} }
         before { 2.times { create(:player, answers_correct: 1, game_id: game_id) } }
@@ -154,9 +154,8 @@ RSpec.describe 'Stats API', type: :request do
 
         run_test! do |example|
           expect(response).to have_http_status(200)
-          require 'pry'; binding.pry
+
           parsed_data = JSON.parse(response.body, symbolize_names: true)
-          expect(parsed_data).to be_a(Hash)
           expect(parsed_data[:message]).to eq "Stats sent successfully"
 
           expect {
