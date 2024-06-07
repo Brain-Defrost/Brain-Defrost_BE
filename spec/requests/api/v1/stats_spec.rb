@@ -1,6 +1,9 @@
 require 'swagger_helper'
 
 RSpec.describe 'Stats API', type: :request do
+  before do
+    Sidekiq::Testing.fake!
+  end
 
   path '/api/v1/games/{game_id}/stats' do
     parameter name: :game_id, in: :path, type: :string, description: 'Game ID'
@@ -145,9 +148,14 @@ RSpec.describe 'Stats API', type: :request do
       produces 'application/json'
 
       response(200, 'successful') do
-        let(:game_id) { create(:game, number_of_questions: 2).id }
+        let(:game) { create(:game, number_of_questions: 2) }
+        let(:game_id) { game.id }
         let(:email) { 'example@mail.com' }
-        before { 2.times { create(:player, answers_correct: 1, game_id: game_id) } }
+
+        before do
+          create(:player, answers_correct: 1, game_id: game_id)
+          create(:player, answers_correct: 1, game_id: game_id)
+        end
 
         schema({
           type: :object,
@@ -163,16 +171,14 @@ RSpec.describe 'Stats API', type: :request do
           expect(parsed_data[:message]).to eq "Stats sent successfully"
 
           expect {
-            post '/api/v1/games/1/stats/example@mail.com'
-          }.to change { Sidekiq::Queue.new('mailers').size }.by(1)
+            post "/api/v1/games/#{game_id}/stats/#{email}"
+          }.to change { Sidekiq::Queues['default'].size }.by(1)
         end
       end
 
       response(404, 'invalid game id') do
         let(:game_id) { -1 }
         let(:email) { 'example@mail.com' }
-        let (:game_1) { create(:game, number_of_questions: 2) }
-        before { create(:player, game_id: game_1.id) }
 
         run_test! do |example|
           expect(response.status).to eq 404
