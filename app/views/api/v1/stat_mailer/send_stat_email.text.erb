@@ -5,5 +5,5 @@ Number of questions: <%= @stat.game.number_of_questions %>
 
 <% @stat.game.players.each do |player| %>
   Player Name: <%= player.display_name %>
-  Player average correct answers: <%= player.answers_correct %>
+  Player correct answers: <%= player.answers_correct %>
 <% end %>
