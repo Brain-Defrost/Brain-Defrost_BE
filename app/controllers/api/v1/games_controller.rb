@@ -8,10 +8,7 @@ class Api::V1::GamesController < ApplicationController
         render json: questions, status: :internal_server_error
       else
         Rails.cache.write(game.id, questions, expires_in: 1.hour)
-
-        # broadcast game status and players
-        # GameChannel.broadcast_to(game, GameSerializer.format(game, questions))
-        # head :created
+        broadcast_players_and_status_for(game)
         render json: GameSerializer.format(game, questions), status: :created
       end
     end
@@ -21,6 +18,7 @@ class Api::V1::GamesController < ApplicationController
     game = Game.find(params[:id])
     questions = Rails.cache.read(game.id)
     questions ||= []
+    broadcast_players_and_status_for(game)
     render json: GameSerializer.format(game, questions)
   end
 
@@ -29,6 +27,7 @@ class Api::V1::GamesController < ApplicationController
     game.update!(game_params)
     questions = Rails.cache.read(game.id)
     questions ||= []
+    broadcast_players_and_status_for(game)
     render json: GameSerializer.format(game, questions)
   end
 
@@ -39,5 +38,10 @@ class Api::V1::GamesController < ApplicationController
 
   def game_params
     params.permit(:started)
+  end
+
+  def broadcast_players_and_status_for(game)
+    players = game.players.as_json(except: [:created_at, :updated_at])
+    ActionCable.server.broadcast("game_channel_#{game.id}", { player_list: players, game_started: game.started })
   end
 end
