@@ -1,4 +1,4 @@
-# <center>BrainFood</center>
+# <center>Brain Defrost</center>
 
 ## Table of Contents
 
@@ -52,7 +52,6 @@ This app uses `http://localhost:3000`.
 To start the local server run `rails server` in the terminal while in the app's base directory (Brain-Defrost_BE-Questions folder).
 
 To stop the local rails server use `Ctrl` + `C` in the open terminal.
-
 
 ### Testing
 [Rspec](https://rspec.info/documentation/) was used for testing. This project currently uses rspec-rails v6.1 and rspec-core v3.13.
