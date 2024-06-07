@@ -7,15 +7,19 @@ class Api::V1::StatsController < ApplicationController
 
   def send_stat_email
     @game = Game.find(params[:game_id])
-    @stat = Stat.create!(avg_correct_answers: calc_correct_answers(@game.id), game_id: @game.id)
-    
+    if @game.stat.nil?
+      @stat = Stat.create!(avg_correct_answers: calc_correct_answers(@game.id), game_id: @game.id)
+    else
+      @stat = @game.stat
+    end
+
     recipient_email = params[:email]
-    
+
     if recipient_email.blank?
       render json: { error: 'Email is required' }, status: :unprocessable_entity
     else
       StatSenderJob.perform_async(recipient_email, @stat.to_json)
-        
+
       render json: { message: 'Stats sent successfully'}, status: :ok
     end
   end

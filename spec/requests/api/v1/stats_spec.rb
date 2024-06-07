@@ -14,7 +14,6 @@ RSpec.describe 'Stats API', type: :request do
 
       response(200, 'successful') do
         let(:game_id) { create(:game, number_of_questions: 2).id }
-        let(:id) { create(:player, answers_correct: 2, game_id: game_id) }
         before { create(:player, answers_correct: 0, game_id: game_id) }
         before { create(:player, answers_correct: 1, game_id: game_id) }
 
@@ -98,31 +97,23 @@ RSpec.describe 'Stats API', type: :request do
 
         run_test! do |example|
           expect(response).to have_http_status(200)
-          parsed_data = JSON.parse(response.body, symbolize_names: true)[:data]
 
-          expect(parsed_data).to be_a(Hash)
-          expect(parsed_data[:id]).to be_a(Integer)
-          expect(parsed_data[:type]).to be_a(String)
+          parsed_data = JSON.parse(response.body, symbolize_names: true)[:data]
+          expect(parsed_data[:id].to_i).to eq Stat.last.id
+          expect(parsed_data[:type]).to eq "stat"
 
           attributes = parsed_data[:attributes]
-
-          expect(attributes[:game_id]).to be_a(Integer)
-          expect(attributes[:avg_correct_answers]).to be_a(Float)
+          expect(attributes[:game_id]).to eq game_id
           expect(attributes[:avg_correct_answers]).to eq 50.0
 
-          relationships = parsed_data[:relationships]
+          games = parsed_data[:relationships][:games][:data]
+          expect(games.size).to eq 1
+          expect(games.first[:id]).to eq game_id
+          expect(games.first[:type]).to eq "game"
 
-          expect(relationships).to be_a(Hash)
-
-          expect( relationships[:games][:data]).to be_a(Array)
-          expect( relationships[:games][:data].first[:id]).to be_a(Integer)
-          expect( relationships[:games][:data].first[:type]).to be_a(String)
-          expect( relationships[:games][:data].first[:attributes]).to be_a(Hash)
-          expect( relationships[:games][:data].first[:attributes][:link]).to be_a(String)
-          expect( relationships[:games][:data].first[:attributes][:number_of_questions]).to be_a(Integer)
-          expect( relationships[:games][:data].first[:attributes][:number_of_players]).to be_a(Integer)
-          expect( relationships[:games][:data].first[:attributes][:topic]).to be_a(String)
-          expect( relationships[:games][:data].first[:attributes][:time_limit]).to be_a(Integer)
+          players = parsed_data[:relationships][:players][:data]
+          expect(players.size).to eq 2
+          expect(players).to all(include(type: "player"))
         end
       end
 
@@ -145,17 +136,14 @@ RSpec.describe 'Stats API', type: :request do
 
     post("Send game's stats via Email") do
       tags 'Stats'
+      consumes 'application/json'
       produces 'application/json'
 
       response(200, 'successful') do
         let(:game) { create(:game, number_of_questions: 2) }
         let(:game_id) { game.id }
         let(:email) { 'example@mail.com' }
-
-        before do
-          create(:player, answers_correct: 1, game_id: game_id)
-          create(:player, answers_correct: 1, game_id: game_id)
-        end
+        before { 2.times { create(:player, answers_correct: 1, game_id: game_id) } }
 
         schema({
           type: :object,
@@ -166,8 +154,8 @@ RSpec.describe 'Stats API', type: :request do
 
         run_test! do |example|
           expect(response).to have_http_status(200)
+
           parsed_data = JSON.parse(response.body, symbolize_names: true)
-          expect(parsed_data).to be_a(Hash)
           expect(parsed_data[:message]).to eq "Stats sent successfully"
 
           expect {
@@ -176,12 +164,12 @@ RSpec.describe 'Stats API', type: :request do
         end
       end
 
-      response(404, 'invalid game id') do
+      response(404, "Stat's game not found") do
         let(:game_id) { -1 }
         let(:email) { 'example@mail.com' }
 
         run_test! do |example|
-          expect(response.status).to eq 404
+          expect(response).to have_http_status(404)
 
           error = JSON.parse(response.body, symbolize_names: true)[:error]
           expect(error[:message]).to eq "Couldn't find Game with 'id'=-1"
