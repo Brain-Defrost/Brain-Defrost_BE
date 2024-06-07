@@ -140,9 +140,9 @@ RSpec.describe 'Stats API', type: :request do
         properties: { email: { type: :string, required: true } }
       }
 
-      response(200, 'successfully created') do
+      response(201, 'successfully created and sent') do
         let(:game_id) { create(:game, number_of_questions: 2).id }
-        let(:email) { 'example@mail.com' }
+        let(:params) { { email: 'example@mail.com'} }
         before { 2.times { create(:player, answers_correct: 1, game_id: game_id) } }
 
         schema({
@@ -154,6 +154,7 @@ RSpec.describe 'Stats API', type: :request do
 
         run_test! do |example|
           expect(response).to have_http_status(200)
+          require 'pry'; binding.pry
           parsed_data = JSON.parse(response.body, symbolize_names: true)
           expect(parsed_data).to be_a(Hash)
           expect(parsed_data[:message]).to eq "Stats sent successfully"
@@ -164,14 +165,12 @@ RSpec.describe 'Stats API', type: :request do
         end
       end
 
-      response(404, 'invalid game id') do
+      response(404, "Stat's game not found") do
         let(:game_id) { -1 }
-        let(:email) { 'example@mail.com' }
-        let (:game_1) { create(:game, number_of_questions: 2) }
-        before { create(:player, game_id: game_1.id) }
+        let(:params) { { email: 'example@mail.com'} }
 
         run_test! do |example|
-          expect(response.status).to eq 404
+          expect(response).to have_http_status(404)
 
           error = JSON.parse(response.body, symbolize_names: true)[:error]
           expect(error[:message]).to eq "Couldn't find Game with 'id'=-1"

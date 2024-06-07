@@ -7,8 +7,8 @@ class Api::V1::StatsController < ApplicationController
 
   def send_stat_email
     @game = Game.find(params[:game_id])
-    @stat = Stat.create!(avg_correct_answers: calc_correct_answers(@game.id), game_id: @game.id)
-    
+    @stat = @game.stat
+
     recipient_email = params[:email]
     
     if recipient_email.blank?
