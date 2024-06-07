@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://brain-defrost-be-questions.onrender.com/api/v1/questions
+    body:
+      encoding: UTF-8
+      string: '{"topic":"music","number_of_questions":8}'
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Fri, 07 Jun 2024 05:01:11 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '585'
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - 88fe14210fa863d9-LHR
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Etag:
+      - W/"266dde9947dda68869c25ad60abb43d9"
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Vary:
+      - Accept, Origin, Accept-Encoding
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Rndr-Id:
+      - ba0d2e49-e9ed-4596
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Render-Origin-Server:
+      - Render
+      X-Request-Id:
+      - 33d9d220-6fb9-43cf-b095-e22f0527f667
+      X-Runtime:
+      - '4.237027'
+      X-Xss-Protection:
+      - '0'
+      Server:
+      - cloudflare
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data":[{"id":null,"type":"question","attributes":{"question_text":"What
+        is the capital of France?","question_number":"1","answer":"Paris","options":["Paris","Rome","Berlin","London"]}},{"id":null,"type":"question","attributes":{"question_text":"Which
+        planet is known as the Red Planet?","question_number":"2","answer":"Mars","options":["Venus","Saturn","Jupiter","Mars"]}},{"id":null,"type":"question","attributes":{"question_text":"Who
+        wrote the famous play ''Romeo and Juliet''?","question_number":"3","answer":"Shakespeare","options":["Shakespeare","Twain","Hemingway","Austen"]}}]}'
+  recorded_at: Fri, 07 Jun 2024 05:01:11 GMT
+recorded_with: VCR 6.2.0
