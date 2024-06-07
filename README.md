@@ -20,7 +20,7 @@ This API-only Rails app manages game, player, and stat data for Brain Defrost. T
 ### Game Overview
 Brain Defrost is a web application designed to help people become more connected and engaged virtually via a trivia game. Generative AI is used to create custom trivia questions based on the topic and desired question count provided.
 
-To play, a user inputs a topic, number of questions, number of players, a time limit to answer questions, and what they'd like their display name to be. The user is then taken to the game's lobby and provided with a shareable link other players may use to join. Once everyone joins, players may start the game and enjoy answering trivia questions. The correct answer and a list of players who answered correctly is displayed after each question. And at the end of the game, players can request the game stats to arrive as email when given an email address"
+To play, a user inputs a topic, number of questions, number of players, a time limit to answer questions, and what they'd like their display name to be. The user is then taken to the game's lobby and provided with a shareable link other players may use to join. Once everyone joins, players may start the game and enjoy answering trivia questions. The correct answer and a list of players who answered correctly is displayed after each question. At the end, players may request the game's final stats via email.
 
 ### Project Background
 

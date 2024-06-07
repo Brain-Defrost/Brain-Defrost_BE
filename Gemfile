@@ -37,7 +37,6 @@ gem "rack-cors"
 
 # API Gems
 gem "faraday"
-gem "faraday-retry"
 gem "jsonapi-serializer"
 
 # rswag for api docs
